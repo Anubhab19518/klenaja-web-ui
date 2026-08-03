@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="forest-base" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0b2e1f"/>
+      <stop offset="40%" stop-color="#1b5e3b"/>
+      <stop offset="72%" stop-color="#2d6a4f"/>
+      <stop offset="100%" stop-color="#1a4d6e"/>
+    </linearGradient>
+    <radialGradient id="forest-light" cx="28%" cy="22%" r="58%">
+      <stop offset="0%" stop-color="#74c69d" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#1b4332" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="forest-depth" cx="78%" cy="72%" r="52%">
+      <stop offset="0%" stop-color="#40916c" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#081c15" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="blur-soft" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="22"/>
+    </filter>
+  </defs>
+  <rect width="1600" height="900" fill="url(#forest-base)"/>
+  <rect width="1600" height="900" fill="url(#forest-light)"/>
+  <rect width="1600" height="900" fill="url(#forest-depth)"/>
+  <g filter="url(#blur-soft)" opacity="0.5">
+    <ellipse cx="380" cy="280" rx="300" ry="190" fill="#95d5b2"/>
+    <ellipse cx="920" cy="540" rx="380" ry="230" fill="#52b788"/>
+    <ellipse cx="1240" cy="200" rx="240" ry="170" fill="#1a6ba0"/>
+  </g>
+</svg>

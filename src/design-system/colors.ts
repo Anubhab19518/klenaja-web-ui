@@ -1,0 +1,38 @@
+/** Kleanja colour primitives. Values match the approved UI exactly. */
+export const colors = {
+  bluePrimary: "var(--ds-color-blue-primary)",
+  blueDark: "var(--ds-color-blue-dark)",
+  blueLight: "var(--ds-color-blue-light)",
+  bluePale: "var(--ds-color-blue-pale)",
+  greenPrimary: "var(--ds-color-green-primary)",
+  greenDark: "var(--ds-color-green-dark)",
+  greenLight: "var(--ds-color-green-light)",
+  greenPale: "var(--ds-color-green-pale)",
+  white: "var(--ds-color-white)",
+  warmWhite: "var(--ds-color-warm-white)",
+  offWhite: "var(--ds-color-off-white)",
+  gray50: "var(--ds-color-gray-50)",
+  gray100: "var(--ds-color-gray-100)",
+  gray200: "var(--ds-color-gray-200)",
+  gray400: "var(--ds-color-gray-400)",
+  gray600: "var(--ds-color-gray-600)",
+  gray800: "var(--ds-color-gray-800)",
+  black: "var(--ds-color-black)",
+  success: "var(--ds-color-success)",
+  warning: "var(--ds-color-warning)",
+  error: "var(--ds-color-error)",
+  purple: "var(--ds-color-purple)",
+} as const;
+
+export const colorVars = {
+  primaryBlue: "var(--ds-color-blue-primary)",
+  accentGreen: "var(--ds-color-green-primary)",
+  darkNavy: "var(--ds-color-blue-dark)",
+  surface: "var(--ds-color-white)",
+  background: "var(--ds-color-off-white)",
+  mutedText: "var(--ds-color-gray-600)",
+  border: "var(--ds-color-gray-200)",
+  success: "var(--ds-color-success)",
+  warning: "var(--ds-color-warning)",
+  error: "var(--ds-color-error)",
+} as const;

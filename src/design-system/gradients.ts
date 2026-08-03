@@ -1,0 +1,16 @@
+export const gradients = {
+  brand: "var(--ds-gradient-brand)",
+  blue: "var(--ds-gradient-blue)",
+  green: "var(--ds-gradient-green)",
+  hero: "var(--ds-gradient-hero)",
+  card: "var(--ds-gradient-card)",
+  bluePale: "var(--ds-gradient-blue-pale)",
+  blueSoft: "var(--ds-gradient-blue-soft)",
+  greenPale: "var(--ds-gradient-green-pale)",
+  greenSoft: "var(--ds-gradient-green-soft)",
+  blueMuted: "var(--ds-gradient-blue-muted)",
+  blueGray: "var(--ds-gradient-blue-gray)",
+  overlayBlue: "var(--ds-gradient-overlay-blue)",
+  overlayGreen: "var(--ds-gradient-overlay-green)",
+  successToBlue: "var(--ds-gradient-success-to-blue)",
+} as const;

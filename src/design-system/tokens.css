@@ -1,0 +1,57 @@
+:root {
+  --ds-color-blue-primary: #1A6BA0;
+  --ds-color-blue-dark: #0D4F7A;
+  --ds-color-blue-light: #2980B9;
+  --ds-color-blue-pale: #D6EAF8;
+  --ds-color-green-primary: #3D9B3A;
+  --ds-color-green-dark: #2E7D32;
+  --ds-color-green-light: #4CAF50;
+  --ds-color-green-pale: #D5F5E3;
+  --ds-color-white: #FFFFFF;
+  --ds-color-warm-white: #FAF9F4;
+  --ds-color-off-white: #F8FAFB;
+  --ds-color-gray-50: #F5F7FA;
+  --ds-color-gray-100: #EAF0F6;
+  --ds-color-gray-200: #D5DDE6;
+  --ds-color-gray-400: #8FA8BF;
+  --ds-color-gray-600: #4A6375;
+  --ds-color-gray-800: #1E2E3B;
+  --ds-color-black: #0D1117;
+  --ds-color-success: #4CAF50;
+  --ds-color-warning: #F39C12;
+  --ds-color-error: #E74C3C;
+  --ds-color-purple: #9B59B6;
+  --ds-gradient-brand: linear-gradient(135deg, #0D4F7A 0%, #1A6BA0 50%, #2E7D32 100%);
+  --ds-gradient-blue: linear-gradient(135deg, #0D4F7A 0%, #1A6BA0 100%);
+  --ds-gradient-green: linear-gradient(135deg, #2E7D32 0%, #4CAF50 100%);
+  --ds-gradient-hero: linear-gradient(135deg, #061B25 0%, #0D354A 60%, #124A45 100%);
+  --ds-gradient-card: linear-gradient(145deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.05) 100%);
+  --ds-gradient-blue-pale: linear-gradient(135deg, #D6EAF8 0%, #EBF5FB 100%);
+  --ds-gradient-blue-soft: linear-gradient(135deg, #D6EAF8 0%, #D0ECF5 100%);
+  --ds-gradient-green-pale: linear-gradient(135deg, #D5F5E3 0%, #E9F7EF 100%);
+  --ds-gradient-green-soft: linear-gradient(135deg, #D5F5E3 0%, #E8F8E8 100%);
+  --ds-gradient-blue-muted: linear-gradient(135deg, #D6EAF8 0%, #EAF2FB 100%);
+  --ds-gradient-blue-gray: linear-gradient(135deg, #D6EAF8 0%, #DDE8F0 100%);
+  --ds-gradient-overlay-blue: linear-gradient(180deg,#1A6BA0,#2980B9);
+  --ds-gradient-overlay-green: linear-gradient(180deg,#3D9B3A,#4CAF50);
+  --ds-gradient-success-to-blue: linear-gradient(90deg, #4CAF50, #2980B9);
+
+  --ds-font-heading: var(--font-montserrat), 'Montserrat', sans-serif;
+  --ds-font-body: var(--font-jakarta), 'Plus Jakarta Sans', sans-serif;
+
+  --ds-spacing-section: 80px 0;
+  --ds-container-max: 1440px;
+  --ds-radius-sm: 8px;
+  --ds-radius-md: 12px;
+  --ds-radius-lg: 16px;
+  --ds-radius-xl: 24px;
+  --ds-radius-xxl: 32px;
+  --ds-radius-pill: 50px;
+  --ds-radius-full: 50%;
+
+  --ds-shadow-sm: 0 2px 8px rgba(26, 107, 160, 0.08);
+  --ds-shadow-md: 0 8px 32px rgba(26, 107, 160, 0.15);
+  --ds-shadow-lg: 0 20px 60px rgba(26, 107, 160, 0.2);
+  --ds-shadow-card: 0 4px 24px rgba(26, 107, 160, 0.12);
+  --ds-shadow-glow: 0 0 40px rgba(26, 107, 160, 0.3);
+}
