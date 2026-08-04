@@ -27,13 +27,14 @@ import {
   Utensils,
   Monitor,
   ShieldCheck,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
 
 const stats = [
   { value: "6+", label: "Product Categories" },
   { value: "20+", label: "Product Variants" },
   { value: "B2B", label: "Bulk Supply Ready" },
-  { type: "map"},
 ];
 
 const categories = [
@@ -46,7 +47,7 @@ const categories = [
     color: colors.bluePrimary,
     bgGrad: gradients.bluePale,
     href: "/products/floor-cleaning",
-    img: "/floor-cleaning.png",
+    img: "/cat_1.png",
   },
   {
     title: "Toilet & Bathroom",
@@ -132,10 +133,10 @@ function IndustriesSlider() {
   const ind = industries[current];
 
   return (
-    <section className="industries-section" style={{ background: "var(--off-white)", padding: "80px 0 0" }}>
+    <section className="industries-section" style={{ background: "var(--warm-white)", padding: "80px 0 0" }}>
       {/* Text header above the slider */}
-      <div className="container industries-heading" style={{ marginBottom: "48px" }}>
-        <h2 style={{ fontFamily: "var(--font-heading)", fontWeight: 800, fontSize: "clamp(2rem, 4vw, 3.2rem)", color: "var(--gray-800)", lineHeight: 1.15, marginBottom: "16px" }}>
+      <div className="container industries-heading" style={{ marginBottom: "48px", display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center" }}>
+        <h2 style={{ fontFamily: "var(--font-heading)", fontWeight: 600, fontSize: "clamp(2.2rem, 6vw, 3rem)", color: "var(--gray-800)", lineHeight: 1.15, marginBottom: "16px" }}>
           We Deliver <span style={{ color: "var(--green-primary)" }}>Solutions</span>,<br />For Every Industry.
         </h2>
         <p style={{ fontFamily: "var(--font-body)", fontSize: "1rem", color: "var(--gray-600)", maxWidth: "640px", lineHeight: 1.7 }}>
@@ -230,14 +231,373 @@ function IndustriesSlider() {
   );
 }
 
-const whyChoose = [
-  { icon: Star, title: "Wide Product Range", desc: "6 categories, 20+ variants for every cleaning need.", img: "/wideproductrange.jpg" },
-  { icon: Award, title: "Quality Assured", desc: "Formulations crafted for consistent, effective performance.", img: "/quality.avif" },
-  { icon: Leaf, title: "Eco-Friendly Options", desc: "Herbal and environmentally conscious product variants.", img: "/ecofriendly.jpg" },
-  { icon: Truck, title: "Reliable Supply", desc: "Pan India distribution with dependable logistics.", img: "/reliablesupply.jpg" },
-  { icon: FlaskConical, title: "Concentrated Solutions", desc: "Higher yield per unit — reduce cost, not quality.", img: "/concentrated.jpg" },
-  { icon: Users, title: "B2B Capabilities", desc: "Bulk packaging and custom solutions for institutions.", img: "/b2b.jpg" },
-];
+function WhyKleanjaSection() {
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  const bentoSlides = [
+    {
+      title: "Showcase our best products",
+      desc: "We engineer cleaning products that deliver measurable results — from germ protection to streak-free shine. Every formulation is tested for consistency and effectiveness.",
+    },
+    {
+      title: "Wide Product Range",
+      desc: "6 core cleaning categories and 20+ specialized variants crafted for residential, institutional, and industrial applications.",
+    },
+    {
+      title: "Concentrated Solutions",
+      desc: "Industrial-grade concentrated liquids designed to deliver higher yield per unit, significantly cutting facility maintenance costs.",
+    },
+    {
+      title: "Eco-Conscious Formulations",
+      desc: "Herbal and environmentally safe product variants developed with non-toxic, biodegradable ingredients.",
+    },
+  ];
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + bentoSlides.length) % bentoSlides.length);
+  };
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % bentoSlides.length);
+  };
+
+  return (
+    <section className="section" style={{ background: "var(--warm-white)" }}>
+      <div className="container">
+        {/* Centered Heading */}
+        <div style={{ textAlign: "center", maxWidth: "700px", margin: "0 auto 56px auto" }}>
+          <span className="section-label section-label-blue reveal">Why Kleanja</span>
+          <h2 className="text-6xl leading-snug text-semibold" style={{ color: "var(--gray-800)", marginBottom: "16px" }}>
+            Built for performance.<br />Priced for value.
+          </h2>
+          <p className="body-md reveal" style={{ marginBottom: "0" }}>
+            We engineer cleaning products that deliver measurable results — from germ protection to streak-free shine. Every formulation is tested for consistency and effectiveness.
+          </p>
+        </div>
+
+        {/* Bento Grid */}
+        <div className="why-bento">
+          {/* Card 1: Top-Left Yellow Featured Card */}
+          <div className="bento-card bento-card-1 reveal reveal-delay-1">
+            <div className="bento-yellow-content">
+              <div>
+                <h3 className="bento-yellow-title">
+                  {bentoSlides[currentSlide].title}
+                </h3>
+                <p className="bento-yellow-desc">
+                  {bentoSlides[currentSlide].desc}
+                </p>
+              </div>
+              {/* Navigation Arrows */}
+              <div className="bento-nav-arrows">
+                <button
+                  onClick={prevSlide}
+                  aria-label="Previous feature"
+                  className="bento-arrow-btn"
+                >
+                  <ChevronLeft size={20} />
+                </button>
+                <button
+                  onClick={nextSlide}
+                  aria-label="Next feature"
+                  className="bento-arrow-btn"
+                >
+                  <ChevronRight size={20} />
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* Card 2: Top-Right Image Card */}
+          <div className="bento-card bento-card-2 reveal reveal-delay-2">
+            <Image
+              src="/quality.avif"
+              alt="Project name"
+              fill
+              sizes="(max-width: 900px) 100vw, 33vw"
+              className="bento-bg-img"
+            />
+            <div className="bento-card-overlay" />
+            <div className="bento-card-body">
+              <h4 className="bento-card-title">Project name</h4>
+              <p className="bento-card-desc">
+                Description of the project
+              </p>
+              <TransitionLink href="/products" className="bento-yellow-pill-btn">
+                Explore Now
+              </TransitionLink>
+            </div>
+          </div>
+
+          {/* Card 3: Bottom-Left Image Card */}
+          <div className="bento-card bento-card-3 reveal reveal-delay-1">
+            <Image
+              src="/wideproductrange.jpg"
+              alt="Project name"
+              fill
+              sizes="(max-width: 900px) 100vw, 33vw"
+              className="bento-bg-img"
+            />
+            <div className="bento-card-overlay" />
+            <div className="bento-card-body">
+              <h4 className="bento-card-title">Project name</h4>
+              <p className="bento-card-desc">
+                Description of the project
+              </p>
+              <TransitionLink href="/products" className="bento-yellow-pill-btn">
+                Explore Now
+              </TransitionLink>
+            </div>
+          </div>
+
+          {/* Card 4: Bottom-Middle Photo Card */}
+          <div className="bento-card bento-card-4 reveal reveal-delay-2">
+            <Image
+              src="/ecofriendly.jpg"
+              alt="Eco-Friendly Formulations"
+              fill
+              sizes="(max-width: 900px) 100vw, 33vw"
+              className="bento-bg-img"
+            />
+          </div>
+
+          {/* Card 5: Bottom-Right Solid Black Card */}
+          <div className="bento-card bento-card-5 reveal reveal-delay-3">
+            <div className="bento-black-content">
+              <div>
+                <h3 className="bento-black-title">
+                  Ordering goods is like sending money in just minutes.
+                </h3>
+                <p className="bento-black-desc">
+                  Empowering your logistics decisions to independent ventures for bulk goods.
+                </p>
+              </div>
+              <TransitionLink href="/b2b" className="bento-yellow-pill-btn">
+                Contact Us
+              </TransitionLink>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <style>{`
+        .why-bento {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          grid-template-rows: 360px 420px;
+          gap: 16px;
+        }
+
+        .bento-card {
+          position: relative;
+          border-radius: 12px;
+          overflow: hidden;
+        }
+
+        .bento-bg-img {
+          object-fit: cover;
+          z-index: 0;
+        }
+
+        /* Card 1: Top-Left Featured Sliding Card */
+        .bento-card-1 {
+          grid-column: 1 / span 2;
+          grid-row: 1;
+          background: var(--ds-color-primary);
+          padding: 40px;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+        }
+
+        .bento-yellow-content {
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          position: relative;
+          z-index: 2;
+        }
+
+        .bento-yellow-title {
+          font-family: var(--font-heading);
+          font-weight: 700;
+          font-size: clamp(1.8rem, 2.8vw, 2.5rem);
+          color: #ffffff;
+          line-height: 1.25;
+          margin-bottom: 12px;
+          letter-spacing: -0.01em;
+        }
+
+        .bento-yellow-desc {
+          font-size: 1.05rem;
+          color: rgba(255, 255, 255, 0.85);
+          line-height: 1.6;
+          max-width: 540px;
+        }
+
+        .bento-nav-arrows {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          margin-top: 24px;
+        }
+
+        .bento-arrow-btn {
+          width: 48px;
+          height: 48px;
+          border-radius: 50%;
+          border: 1.5px solid #ffffff;
+          background: transparent;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          color: #ffffff;
+          transition: all 0.2s ease;
+        }
+
+        .bento-arrow-btn:hover {
+          background: rgba(255, 255, 255, 0.15);
+          transform: scale(1.06);
+        }
+
+        /* Card 2, 3, 4: Image Cards */
+        .bento-card-2 {
+          grid-column: 3 / span 1;
+          grid-row: 1;
+        }
+
+        .bento-card-3 {
+          grid-column: 1 / span 1;
+          grid-row: 2;
+        }
+
+        .bento-card-4 {
+          grid-column: 2 / span 1;
+          grid-row: 2;
+        }
+
+        .bento-card-overlay {
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(
+            to top,
+            rgba(3, 67, 106, 0.92) 0%,
+            rgba(3, 67, 106, 0.35) 55%,
+            transparent 100%
+          );
+          z-index: 1;
+        }
+
+        .bento-card-body {
+          position: relative;
+          z-index: 2;
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-end;
+          padding: 32px;
+          color: white;
+        }
+
+        .bento-card-title {
+          font-family: var(--font-heading);
+          font-weight: 700;
+          font-size: 1.45rem;
+          color: #ffffff;
+          margin-bottom: 6px;
+          text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+        }
+
+        .bento-card-desc {
+          font-size: 0.95rem;
+          color: rgba(255, 255, 255, 0.85);
+          line-height: 1.45;
+          margin-bottom: 16px;
+          text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Accent Pill Button */
+        .bento-yellow-pill-btn {
+          background: var(--ds-color-accent);
+          color: #ffffff;
+          font-weight: 600;
+          font-size: 0.9rem;
+          padding: 10px 24px;
+          border-radius: 9999px;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          width: fit-content;
+          text-decoration: none;
+          transition: all 0.2s ease;
+          box-shadow: 0 4px 12px rgba(39, 140, 11, 0.3);
+        }
+
+        .bento-yellow-pill-btn:hover {
+          background: #1E6B08;
+          transform: translateY(-2px);
+          box-shadow: 0 6px 16px rgba(39, 140, 11, 0.4);
+        }
+
+        /* Card 5: Bottom-Right Solid Primary Card */
+        .bento-card-5 {
+          grid-column: 3 / span 1;
+          grid-row: 2;
+          background: var(--ds-color-primary);
+          padding: 40px 32px;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+        }
+
+        .bento-black-content {
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          color: white;
+        }
+
+        .bento-black-title {
+          font-family: var(--font-heading);
+          font-weight: 700;
+          font-size: clamp(1.4rem, 1.8vw, 1.75rem);
+          color: #ffffff;
+          line-height: 1.3;
+          margin-bottom: 16px;
+          letter-spacing: -0.01em;
+        }
+
+        .bento-black-desc {
+          font-size: 0.92rem;
+          color: rgba(255, 255, 255, 0.7);
+          line-height: 1.55;
+        }
+
+        /* Mobile / Tablet Responsiveness */
+        @media (max-width: 900px) {
+          .why-bento {
+            grid-template-columns: 1fr;
+            grid-template-rows: auto;
+            gap: 20px;
+          }
+
+          .bento-card-1,
+          .bento-card-2,
+          .bento-card-3,
+          .bento-card-4,
+          .bento-card-5 {
+            grid-column: span 1 !important;
+            grid-row: auto !important;
+            min-height: 340px;
+          }
+        }
+      `}</style>
+    </section>
+  );
+}
 
 export default function Home() {
   const revealRef = useRef<NodeListOf<Element> | null>(null);
@@ -267,94 +627,50 @@ export default function Home() {
       <section
         className="home-hero"
         style={{
-          background: "var(--gradient-hero)",
+          background: "linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.35)), url('/hero_image.jpg') no-repeat center center",
+          backgroundSize: "cover",
           minHeight: "100vh",
           display: "flex",
-          alignItems: "center",
+          flexDirection: "column",
           position: "relative",
           overflow: "hidden",
-          paddingTop: "84px",
         }}
       >
-        {/* Decorative blobs */}
-        <div className="hero-blob" style={{ width: "600px", height: "600px", top: "-200px", right: "-200px", background: "var(--blue-primary)" }} />
-        <div className="hero-blob" style={{ width: "400px", height: "400px", bottom: "-150px", left: "-100px", background: "var(--green-dark)" }} />
-        <div className="hero-blob" style={{ width: "300px", height: "300px", top: "30%", right: "30%", background: "var(--blue-light)", opacity: 0.1 }} />
-
-        {/* Animated ring */}
-        <div
-          style={{
-            position: "absolute",
-            top: "50%",
-            right: "12%",
-            transform: "translateY(-50%)",
-            width: "520px",
-            height: "520px",
-            borderRadius: "50%",
-            border: "1px solid rgba(255,255,255,0.08)",
-            pointerEvents: "none",
-          }}
-        >
-          <div
-            style={{
-              position: "absolute",
-              inset: "40px",
-              borderRadius: "50%",
-              border: "1px solid rgba(255,255,255,0.05)",
-            }}
-          />
-          <div
-            style={{
-              position: "absolute",
-              inset: "80px",
-              borderRadius: "50%",
-              border: "1px solid rgba(255,255,255,0.05)",
-            }}
-          />
-        </div>
-
-        <div className="container" style={{ position: "relative", zIndex: 2 }}>
+        <div className="container" style={{ position: "relative", zIndex: 2, width: "100%", height: "100%", display: "flex", flexDirection: "column", justifyContent: "flex-end", flexGrow: 1, paddingBottom: "100px", paddingTop: "160px" }}>
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "1fr 1fr",
-              gap: "60px",
-              alignItems: "center",
+              gridTemplateColumns: "1.2fr 0.8fr",
+              gap: "40px",
+              alignItems: "end",
             }}
             className="hero-grid"
           >
             {/* Left — Text */}
-            <div className="home-hero-copy">
-              
-
+            <div className="home-hero-copy" style={{ textAlign: "left" }}>
               <h1
-                className="heading-xl"
                 style={{
+                  fontFamily: "var(--font-heading)",
+                  fontWeight: 500,
+                  fontSize: "clamp(2rem, 5.5vw, 4rem)",
+                  lineHeight: 1.15,
                   color: "white",
-                  marginBottom: "12px",
-                  animation: "fadeInUp 0.7s 0.1s ease both",
+                  marginBottom: "24px",
+                  letterSpacing: "-0.025em",
+                  textShadow: "0 2px 10px rgba(0,0,0,0.15)",
                 }}
               >
-                Dirt Ka
-                <br />
-                <span
-                  style={{
-                    background: gradients.successToBlue,
-                    WebkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                  }}
-                >
-                  The End.
-                </span>
+                Dirt ka the end.
               </h1>
 
               <p
-                className="body-lg"
                 style={{
-                  color: "rgba(255,255,255,0.75)",
+                  color: "rgba(255, 255, 255, 0.85)",
+                  fontSize: "1.05rem",
+                  lineHeight: 1.6,
                   maxWidth: "480px",
-                  marginBottom: "36px",
-                  animation: "fadeInUp 0.7s 0.2s ease both",
+                  marginBottom: "32px",
+                  fontFamily: "var(--font-body)",
                 }}
               >
                 Premium cleaning & hygiene solutions engineered for homes, offices, hospitals, and industries. Superior performance. Proven results.
@@ -363,203 +679,57 @@ export default function Home() {
               <div
                 style={{
                   display: "flex",
-                  gap: "16px",
-                  flexWrap: "wrap",
-                  animation: "fadeInUp 0.7s 0.3s ease both",
+                  alignItems: "center",
+                  gap: "12px",
                 }}
               >
-                <TransitionLink href="/products" className="btn-primary">
-                  Explore Products <ArrowRight size={18} />
+                <TransitionLink
+                  href="/products"
+                  className="hero-btn-pill"
+                >
+                  Explore Products
                 </TransitionLink>
-                <TransitionLink href="/b2b" className="btn-outline">
-                  B2B Solutions
+                <TransitionLink
+                  href="/products"
+                  className="hero-btn-circle"
+                >
+                  <ArrowRight size={20} style={{ transform: "rotate(-45deg)" }} />
                 </TransitionLink>
               </div>
+            </div>
 
-              {/* Trust strip */}
-              <div
-                style={{
-                  display: "flex",
-                  gap: "24px",
-                  marginTop: "40px",
-                  flexWrap: "wrap",
-                  animation: "fadeInUp 0.7s 0.4s ease both",
-                }}
-              >
-                {["Germ Protection", "Eco-Friendly Variants", "Concentrated Solutions"].map((t) => (
-                  <div key={t} style={{ display: "flex", alignItems: "center", gap: "6px" }}>
-                    <CheckCircle size={15} color={colors.greenLight} />
-                    <span style={{ fontSize: "0.85rem", color: "rgba(255,255,255,0.7)", fontFamily: "var(--font-heading)", fontWeight: 500 }}>
-                      {t}
-                    </span>
+            {/* Right — Empty to let background image show the device */}
+            <div className="hidden-mobile" />
+          </div>
+        </div>
+      </section>
+
+      {/* ============ DISTRIBUTION NETWORK ============ */}
+      <section className="distribution-section" style={{ background: "var(--warm-white)", padding: "clamp(48px, 9vw, 72px) 0" }}>
+        <div className="container">
+          <div className="distribution-layout">
+            <div className="distribution-copy">
+              <p className="label reveal" style={{ color: "var(--blue-primary)", marginBottom: "14px" }}>
+                Our reach
+              </p>
+              <h2 className="heading-lg reveal" style={{ color: "var(--gray-800)", marginBottom: "20px", maxWidth: "620px" }}>
+                We Have Distributions All Over India!
+              </h2>
+              <p className="reveal" style={{ color: "var(--gray-600)", fontSize: "1rem", maxWidth: "560px", marginBottom: "42px" }}>
+                From homes to businesses, Kleanja products move through a dependable network built to serve customers across the country.
+              </p>
+              <div className="distribution-stats">
+                {stats.map((stat, i) => (
+                  <div key={stat.label} className={`distribution-stat reveal reveal-delay-${i + 1}`}>
+                    <div className="distribution-stat-value">{stat.value}</div>
+                    <div className="distribution-stat-label">{stat.label}</div>
                   </div>
                 ))}
               </div>
             </div>
-
-            {/* Right — Product Image */}
-            <div
-              style={{
-                position: "relative",
-                display: "flex",
-                justifyContent: "center",
-                animation: "fadeInRight 0.8s 0.2s ease both",
-              }}
-            >
-              <div
-                style={{
-                  position: "relative",
-                  width: "100%",
-                  maxWidth: "480px",
-                  aspectRatio: "1",
-                  borderRadius: "50%",
-                  background: "rgba(255,255,255,0.04)",
-                  border: "1px solid rgba(255,255,255,0.1)",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  animation: "float 6s ease-in-out infinite",
-                }}
-              >
-                <Image
-                  src="/hero-products.png"
-                  alt="Kleanja Premium Cleaning Products"
-                  width={420}
-                  height={420}
-                  style={{ objectFit: "contain", borderRadius: "50%" }}
-                  priority
-                />
-                {/* Floating badges */}
-                <div
-                  style={{
-                    position: "absolute",
-                    top: "15%",
-                    left: "-10%",
-                    background: "white",
-                    borderRadius: "12px",
-                    padding: "10px 16px",
-                    boxShadow: "0 8px 32px rgba(0,0,0,0.15)",
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "8px",
-                    animation: "float 4s 1s ease-in-out infinite",
-                  }}
-                >
-                  <Sparkles size={16} color={colors.greenPrimary} />
-                  <span style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: "0.85rem", color: "#1A1A1A" }}>6 Categories</span>
-                </div>
-                <div
-                  style={{
-                    position: "absolute",
-                    bottom: "20%",
-                    right: "-10%",
-                    background: "white",
-                    borderRadius: "12px",
-                    padding: "10px 16px",
-                    boxShadow: "0 8px 32px rgba(0,0,0,0.15)",
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "8px",
-                    animation: "float 5s 0.5s ease-in-out infinite",
-                  }}
-                >
-                  <Shield size={16} color={colors.bluePrimary} />
-                  <span style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: "0.85rem", color: "#1A1A1A" }}>Germ Kill</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Wave divider */}
-        <div style={{ position: "absolute", bottom: -2, left: 0, right: 0 }}>
-          <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,80 L0,80 Z" fill="var(--off-white)" />
-          </svg>
-        </div>
-      </section>
-
-      {/* ============ STATS BANNER ============ */}
-      <section style={{ background: "var(--off-white)", padding: "60px 0" }}>
-        <div className="container">
-          <div
-            className="stats-card"
-            style={{
-              background: "var(--warm-white)",
-              borderRadius: "24px",
-              padding: "48px",
-              boxShadow: "var(--shadow-lg)",
-              border: "1px solid rgba(26,107,160,0.06)",
-            }}
-          >
-            <p
-              className="label reveal"
-              style={{ color: "var(--blue-primary)", textAlign: "center", marginBottom: "8px" }}
-            >
-              Kleanja at a Glance
-            </p>
-            <h2
-              className="heading-md reveal"
-              style={{ textAlign: "center", marginBottom: "40px", color: "var(--gray-800)" }}
-            >
-              Trusted across India's homes and businesses
-            </h2>
-            <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: "repeat(4, 1fr)",
-                gap: "1px",
-                background: "var(--gray-100)",
-                borderRadius: "16px",
-                overflow: "hidden",
-              }}
-              className="stats-grid"
-            >
-              {stats.map((stat, i) => (
-                <div
-                  key={i}
-                  className={`reveal reveal-delay-${i + 1}`}
-                  style={{
-                    background: "white",
-                    padding: "24px",
-                    textAlign: "center",
-                    minHeight: "250px",
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
-                >
-                  {stat.type === "map" ? (
-                    <IndiaDistributionMap />
-                  ) : (
-                    <>
-                      <div
-                        style={{
-                          fontFamily: "var(--font-heading)",
-                          fontSize: "clamp(2rem,4vw,3rem)",
-                          fontWeight: 800,
-                          background: "var(--gradient-brand)",
-                          WebkitBackgroundClip: "text",
-                          WebkitTextFillColor: "transparent",
-                          marginBottom: "8px",
-                        }}
-                      >
-                        {stat.value}
-                      </div>
-
-                      <div
-                        style={{
-                          fontSize: "0.9rem",
-                          color: "var(--gray-600)",
-                        }}
-                      >
-                        {stat.label}
-                      </div>
-                    </>
-                  )}
-                </div>
-              ))}
+            <div className="distribution-map reveal reveal-delay-2" aria-label="Kleanja distribution network across India">
+              {/* Adjust mapHeight here to change the map's visual size. */}
+              <IndiaDistributionMap large mapHeight="clamp(420px, 45vw, 580px)" />
             </div>
           </div>
         </div>
@@ -569,103 +739,7 @@ export default function Home() {
       <ProductCategoriesCarousel categories={categories} />
 
       {/* ============ WHY CHOOSE KLEANJA ============ */}
-      <section className="section" style={{ background: "var(--warm-white)" }}>
-        <div className="container">
-          {/* Centered Heading */}
-          <div style={{ textAlign: "center", maxWidth: "700px", margin: "0 auto 56px auto" }}>
-            <span className="section-label section-label-blue reveal">Why Kleanja</span>
-            <h2 className="heading-lg reveal" style={{ color: "var(--gray-800)", marginBottom: "16px" }}>
-              Built for performance.<br />Priced for value.
-            </h2>
-            <p className="body-md reveal" style={{ marginBottom: "0" }}>
-              We engineer cleaning products that deliver measurable results — from germ protection to streak-free shine. Every formulation is tested for consistency and effectiveness.
-            </p>
-          </div>
-
-          {/* Bento Grid */}
-          <div className="why-bento">
-            {whyChoose.map((item, i) => (
-              <div
-                key={item.title}
-                className={`why-card why-card-${i} reveal reveal-delay-${(i % 3) + 1}`}
-                style={{
-                  position: "relative",
-                  borderRadius: "24px",
-                  overflow: "hidden",
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "flex-end",
-                  padding: "32px",
-                  background: "#111",
-                  boxShadow: "0 12px 32px rgba(0,0,0,0.1)",
-                }}
-              >
-                {/* Background Image */}
-                <Image
-                  src={item.img}
-                  alt={item.title}
-                  fill
-                  sizes="(max-width: 900px) 100vw, 50vw"
-                  style={{ objectFit: "cover", zIndex: 0, transition: "transform 0.6s cubic-bezier(0.22, 1, 0.36, 1)" }}
-                  className="why-bg-img"
-                />
-                {/* Dark Gradient Overlay */}
-                <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.3) 60%, rgba(0,0,0,0) 100%)", zIndex: 1 }} />
-
-                {/* Content */}
-                <div style={{ position: "relative", zIndex: 2, color: "white" }}>
-                  <h4 style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: "1.4rem", color: "white", marginBottom: "8px", textShadow: "0 2px 10px rgba(0,0,0,0.5)" }}>
-                    {item.title}
-                  </h4>
-                  <p style={{ fontSize: "0.95rem", color: "rgba(255,255,255,0.85)", lineHeight: 1.5, textShadow: "0 1px 4px rgba(0,0,0,0.5)" }}>
-                    {item.desc}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <style>{`
-          .why-bento {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            grid-template-rows: repeat(3, 280px);
-            gap: 24px;
-          }
-          .why-card {
-            cursor: default;
-            transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s ease;
-          }
-          .why-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 20px 48px rgba(0,0,0,0.25) !important;
-          }
-          .why-card:hover .why-bg-img {
-            transform: scale(1.08) !important;
-          }
-          
-          /* Asymmetrical Bento layout */
-          .why-card-0 { grid-column: span 2; grid-row: span 2; }
-          .why-card-1 { grid-column: span 2; grid-row: span 1; }
-          .why-card-2 { grid-column: span 1; grid-row: span 1; }
-          .why-card-3 { grid-column: span 1; grid-row: span 2; }
-          .why-card-4 { grid-column: span 2; grid-row: span 1; }
-          .why-card-5 { grid-column: span 1; grid-row: span 1; }
-
-          @media (max-width: 900px) {
-            .why-bento {
-              grid-template-columns: 1fr;
-              grid-template-rows: auto;
-            }
-            .why-card {
-              grid-column: span 1 !important;
-              grid-row: span 1 !important;
-              min-height: 320px;
-            }
-          }
-        `}</style>
-      </section>
+      <WhyKleanjaSection />
       <CleanEverySurface />
 
       {/* ============ INDUSTRIES WE SERVE — Photo Slider ============ */}
@@ -759,12 +833,91 @@ export default function Home() {
         .slider-btn:hover {
           background: rgba(255,255,255,0.3);
         }
+        .hero-btn-pill {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          padding: 16px 36px;
+          background: white;
+          color: #1D2939;
+          font-family: var(--font-heading);
+          font-size: 1rem;
+          font-weight: 600;
+          border-radius: 9999px;
+          text-decoration: none;
+          box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+          transition: all 0.25s ease;
+        }
+        .hero-btn-pill:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+          background: #f8faf8;
+        }
+        .hero-btn-circle {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          width: 56px;
+          height: 56px;
+          border-radius: 50%;
+          background: white;
+          color: #1D2939;
+          box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+          transition: all 0.25s ease;
+        }
+        .hero-btn-circle:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+          background: #f8faf8;
+        }
+        .distribution-layout {
+          display: grid;
+          grid-template-columns: minmax(0, 1fr) minmax(420px, 0.95fr);
+          align-items: center;
+          gap: clamp(40px, 7vw, 112px);
+        }
+        .distribution-stats {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+        }
+        .distribution-stat {
+          min-width: 0;
+          padding: 4px clamp(14px, 2vw, 30px);
+          border-right: 1px solid var(--gray-200);
+        }
+        .distribution-stat:first-child { padding-left: 0; }
+        .distribution-stat:last-child { border-right: none; }
+        .distribution-stat-value {
+          font-family: var(--font-heading);
+          font-size: clamp(2.45rem, 4.2vw, 4.5rem);
+          font-weight: 800;
+          line-height: 1;
+          letter-spacing: -0.055em;
+          background: var(--gradient-brand);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          margin-bottom: 12px;
+        }
+        .distribution-stat-label {
+          color: var(--gray-600);
+          font-size: clamp(0.72rem, 1.1vw, 0.9rem);
+          font-weight: 600;
+          line-height: 1.45;
+        }
+        .distribution-map {
+          min-height: 0;
+          overflow: hidden;
+          -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 13%, #000 86%, transparent 100%);
+          mask-image: linear-gradient(to right, transparent 0%, #000 13%, #000 86%, transparent 100%);
+        }
         @media (max-width: 1024px) {
           .hero-grid { grid-template-columns: 1fr !important; }
           .hero-grid > div:last-child { display: none; }
           .why-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
           .b2b-card { grid-template-columns: 1fr !important; }
-          .stats-grid { grid-template-columns: repeat(2, 1fr) !important; }
+          .distribution-layout { grid-template-columns: 1fr; gap: 28px; }
+          .distribution-copy { max-width: 720px; }
+          .distribution-map { max-width: 680px; width: 100%; }
         }
         @media (max-width: 640px) {
           .home-hero {
@@ -782,9 +935,11 @@ export default function Home() {
           .home-hero-copy > div {
             justify-content: center;
           }
-          .stats-card {
-            padding: 24px !important;
-          }
+          .distribution-section { padding: 72px 0 !important; }
+          .distribution-stats { gap: 0; }
+          .distribution-stat { padding: 4px 12px; }
+          .distribution-stat-value { font-size: clamp(2rem, 11vw, 3rem); }
+          .distribution-stat-label { font-size: 0.7rem; }
           .industries-section {
             padding-top: 56px !important;
           }
@@ -815,7 +970,6 @@ export default function Home() {
           }
           .b2b-card { padding: 32px !important; }
           .b2b-features { grid-template-columns: 1fr !important; }
-          .stats-grid { grid-template-columns: 1fr 1fr !important; }
         }
       `}</style>
     </>

@@ -312,10 +312,10 @@ export default function ProductCategoryPage({
               <p style={{ fontSize: "1.1rem", lineHeight: 1.6, opacity: 0.9, maxWidth: "90%" }}>
                 {description}
               </p>
-              
+
               <div style={{ marginTop: "auto", display: "flex", gap: "12px", paddingTop: "40px" }}>
-                 <div style={{ width: 44, height: 44, borderRadius: "50%", border: "1px solid rgba(0,0,0,0.2)", display: "flex", alignItems: "center", justifyContent: "center" }}><ChevronLeft size={20} /></div>
-                 <div style={{ width: 44, height: 44, borderRadius: "50%", border: "1px solid rgba(0,0,0,0.2)", display: "flex", alignItems: "center", justifyContent: "center" }}><ChevronRight size={20} /></div>
+                <div style={{ width: 44, height: 44, borderRadius: "50%", border: "1px solid rgba(0,0,0,0.2)", display: "flex", alignItems: "center", justifyContent: "center" }}><ChevronLeft size={20} /></div>
+                <div style={{ width: 44, height: 44, borderRadius: "50%", border: "1px solid rgba(0,0,0,0.2)", display: "flex", alignItems: "center", justifyContent: "center" }}><ChevronRight size={20} /></div>
               </div>
             </div>
 
@@ -335,7 +335,7 @@ export default function ProductCategoryPage({
                   padding: "36px",
                   boxShadow: "0 12px 32px rgba(0,0,0,0.15)",
                   border: `1px solid ${color}20`,
-                  background: product.img ? "#111" : gradient,
+                  background: product.img ? "var(--ds-color-primary)" : gradient,
                 }}
               >
                 {product.img ? (
@@ -354,7 +354,7 @@ export default function ProductCategoryPage({
                     {renderIcon(260)}
                   </div>
                 )}
-                
+
                 {product.badge && (
                   <div style={{ position: "absolute", top: "24px", left: "24px", zIndex: 2, background: color, color: "white", padding: "6px 16px", borderRadius: "50px", fontSize: "0.75rem", fontFamily: "var(--font-heading)", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", boxShadow: `0 4px 16px ${color}60` }}>
                     {product.badge}
@@ -375,11 +375,11 @@ export default function ProductCategoryPage({
                   >
                     {product.name}
                   </h3>
-                  
+
                   <p style={{ fontSize: "0.95rem", color: product.img ? "rgba(255,255,255,0.85)" : "var(--gray-700)", lineHeight: 1.6, marginBottom: "24px", maxWidth: "95%" }}>
                     {product.description}
                   </p>
-                  
+
                   <div>
                     <TransitionLink
                       href="/contact"
@@ -419,8 +419,8 @@ export default function ProductCategoryPage({
                 flexDirection: "column",
                 justifyContent: "space-between",
                 padding: "48px",
-                boxShadow: "0 12px 32px rgba(0,0,0,0.2)",
-                background: "#0A0A0A",
+                boxShadow: "0 12px 32px rgba(3, 103, 166, 0.2)",
+                background: "var(--gradient-hero)",
                 color: "white"
               }}
             >
@@ -432,7 +432,7 @@ export default function ProductCategoryPage({
                   Empowering your logistics decisions to independent ventures for bulk goods.
                 </p>
               </div>
-              
+
               <div style={{ marginTop: "32px" }}>
                 <TransitionLink
                   href="/contact"

@@ -6,22 +6,22 @@ import { Phone, Mail, MapPin, ArrowRight } from "lucide-react";
 // Social icons as inline SVGs since lucide-react 1.28 lacks them
 const SocialFacebook = () => (
   <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
   </svg>
 );
 const SocialInstagram = () => (
   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+    <rect x="2" y="2" width="20" height="20" rx="5" ry="5" /><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" /><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
   </svg>
 );
 const SocialTwitter = () => (
   <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
   </svg>
 );
 const SocialLinkedin = () => (
   <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/>
+    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z" /><circle cx="4" cy="4" r="2" />
   </svg>
 );
 
@@ -61,7 +61,7 @@ export default function Footer() {
           width: "400px",
           height: "400px",
           borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(61,155,58,0.12), transparent)",
+          background: "radial-gradient(circle, rgba(39,140,11,0.12), transparent)",
           pointerEvents: "none",
         }}
       />
@@ -73,7 +73,7 @@ export default function Footer() {
           width: "300px",
           height: "300px",
           borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(26,107,160,0.15), transparent)",
+          background: "radial-gradient(circle, rgba(3,103,166,0.15), transparent)",
           pointerEvents: "none",
         }}
       />
@@ -81,7 +81,7 @@ export default function Footer() {
       {/* CTA Banner */}
       <div
         style={{
-          background: "linear-gradient(90deg, rgba(26,107,160,0.3), rgba(61,155,58,0.3))",
+          background: "linear-gradient(90deg, rgba(3,103,166,0.35), rgba(39,140,11,0.35))",
           borderBottom: "1px solid rgba(255,255,255,0.08)",
           padding: "48px 0",
         }}
@@ -133,12 +133,12 @@ export default function Footer() {
           <div>
             <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "20px" }}>
               <div style={{ background: "white", padding: "8px", borderRadius: "12px", display: "inline-block" }}>
-                <Image 
-                  src="/logo.jpeg" 
-                  alt="Kleanja Logo" 
-                  width={300} 
-                  height={300} 
-                  style={{ width: "auto", height: "52px" }} 
+                <Image
+                  src="/logo.jpeg"
+                  alt="Kleanja Logo"
+                  width={300}
+                  height={300}
+                  style={{ width: "auto", height: "52px" }}
                 />
               </div>
             </div>
@@ -154,7 +154,7 @@ export default function Footer() {
                 { icon: MapPin, text: "India" },
               ].map(({ icon: Icon, text }) => (
                 <div key={text} style={{ display: "flex", alignItems: "center", gap: "10px", fontSize: "0.88rem" }}>
-                  <Icon size={15} style={{ color: "var(--green-light)", flexShrink: 0 }} />
+                  <Icon size={15} style={{ color: "var(--ds-color-accent)", flexShrink: 0 }} />
                   <span style={{ color: "rgba(255,255,255,0.65)" }}>{text}</span>
                 </div>
               ))}
@@ -179,7 +179,7 @@ export default function Footer() {
                     transition: "all 0.2s ease",
                   }}
                   onMouseEnter={(e) => {
-                    (e.currentTarget as HTMLAnchorElement).style.background = "rgba(26,107,160,0.5)";
+                    (e.currentTarget as HTMLAnchorElement).style.background = "rgba(3,103,166,0.6)";
                     (e.currentTarget as HTMLAnchorElement).style.color = "white";
                   }}
                   onMouseLeave={(e) => {

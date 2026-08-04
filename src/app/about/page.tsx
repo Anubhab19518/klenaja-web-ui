@@ -119,7 +119,7 @@ export default function AboutPage() {
                 />
                 {/* Gradient overlay for readability */}
                 <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.3) 60%, rgba(0,0,0,0) 100%)", zIndex: 1 }} />
-                
+
                 <div style={{ position: "relative", zIndex: 2, color: "white" }}>
                   <h3 style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: "clamp(1.5rem, 2vw, 1.8rem)", marginBottom: "12px", textShadow: "0 2px 10px rgba(0,0,0,0.5)" }}>
                     {val.title}

@@ -94,7 +94,7 @@ export default function FAQSection() {
 
       <style>{`
         .faq-section {
-          background: white;
+          background: var(--ds-color-neutral-surface);
           padding: 96px 0;
         }
 
@@ -119,7 +119,7 @@ export default function FAQSection() {
           font-family: var(--font-body);
           font-size: 0.9375rem;
           line-height: 1.75;
-          color: var(--gray-400);
+          color: var(--gray-600);
           max-width: 340px;
           margin: 0;
         }
@@ -135,11 +135,12 @@ export default function FAQSection() {
           border: 1px solid var(--gray-200);
           border-radius: 10px;
           overflow: hidden;
-          transition: border-color 0.25s ease;
+          transition: border-color 0.25s ease, box-shadow 0.25s ease;
         }
 
         .faq-item:hover {
-          border-color: #C8D3DE;
+          border-color: var(--ds-color-surface-accent);
+          box-shadow: 0 4px 16px rgba(3, 103, 166, 0.06);
         }
 
         .faq-trigger {

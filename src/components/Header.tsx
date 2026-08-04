@@ -24,6 +24,7 @@ const navLinks = [
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [isProductsOpen, setIsProductsOpen] = useState(false);
 
@@ -38,9 +39,14 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const showWhiteBg = isHovered;
+  const linkColor = showWhiteBg ? "#0367A6" : "rgba(255, 255, 255, 0.95)";
+
   return (
     <>
       <header
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
         style={{
           position: "fixed",
           top: 0,
@@ -48,25 +54,43 @@ export default function Header() {
           right: 0,
           zIndex: 1000,
           transition: "all 0.4s ease",
-          background: isScrolled ? "rgba(6, 27, 37, 0.98)" : "transparent",
-          backdropFilter: isScrolled ? "blur(12px)" : "none",
-          borderBottom: isScrolled ? "1px solid rgba(255,255,255,0.05)" : "1px solid transparent",
-          padding: isScrolled ? "12px 0" : "20px 0",
+          background: isHovered ? "white" : isScrolled ? "rgba(3, 67, 106, 0.98)" : "transparent",
+          backdropFilter: isHovered ? "none" : isScrolled ? "blur(12px)" : "none",
+          borderBottom: isHovered ? "1px solid rgba(0,0,0,0.08)" : isScrolled ? "1px solid rgba(255,255,255,0.1)" : "1px solid transparent",
+          padding: 0,
         }}
       >
-        <div className="container">
+        {/* Announcement Bar */}
+        <div
+          style={{
+            height: isScrolled ? "0" : "36px",
+            overflow: "hidden",
+            background: "#b5f3be",
+            color: "#1e6b08",
+            fontSize: "0.85rem",
+            fontWeight: 600,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            transition: "height 0.3s ease",
+            fontFamily: "var(--font-heading)",
+          }}
+        >
+          Save on Kleanja Bulk Orders. Special B2B pricing active.
+        </div>
+        <div className="container" style={{ padding: isScrolled ? "6px 24px" : "12px 24px", transition: "padding 0.3s ease" }}>
           <nav
             style={{
               display: "flex",
               alignItems: "center",
               justifyContent: "space-between",
-              height: isScrolled ? "70px" : "84px",
+              height: isScrolled ? "60px" : "72px",
               transition: "height 0.35s ease",
             }}
           >
             {/* Logo */}
             <TransitionLink href="/" style={{ display: "flex", alignItems: "center", gap: "10px", textDecoration: "none" }}>
-              <KleanjaLogo scrolled={isScrolled} />
+              <KleanjaLogo scrolled={isScrolled} hovered={isHovered} />
             </TransitionLink>
 
             {/* Desktop Nav */}
@@ -99,9 +123,9 @@ export default function Header() {
                           padding: "8px 16px",
                           borderRadius: "8px",
                           fontFamily: "var(--font-heading)",
-                          fontWeight: 600,
-                          fontSize: "0.95rem",
-                          color: "rgba(255,255,255,0.95)",
+                          fontWeight: 500,
+                          fontSize: "0.9rem",
+                          color: linkColor,
                           transition: "all 0.2s ease",
                           textDecoration: "none",
                           cursor: "default",
@@ -112,6 +136,7 @@ export default function Header() {
                         <ChevronDown
                           size={15}
                           style={{
+                            color: linkColor,
                             transform: isProductsOpen ? "rotate(180deg)" : "rotate(0deg)",
                             transition: "transform 0.2s ease",
                           }}
@@ -146,10 +171,10 @@ export default function Header() {
                           transition: "opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease",
                           background: "white",
                           borderRadius: "16px",
-                          boxShadow: "0 20px 60px rgba(26, 107, 160, 0.2)",
+                          boxShadow: "0 20px 60px rgba(3, 103, 166, 0.2)",
                           padding: "12px",
                           minWidth: "240px",
-                          border: "1px solid rgba(26, 107, 160, 0.08)",
+                          border: "1px solid rgba(3, 103, 166, 0.08)",
                         }}
                       >
                         {productCategories.map((cat) => (
@@ -171,9 +196,9 @@ export default function Header() {
                         display: "block",
                         padding: "8px 16px",
                         fontFamily: "var(--font-heading)",
-                        fontWeight: 600,
-                        fontSize: "0.95rem",
-                        color: "rgba(255,255,255,0.95)",
+                        fontWeight: 500,
+                        fontSize: "0.9rem",
+                        color: linkColor,
                         transition: "color 0.3s ease",
                         textDecoration: "none",
                       }}
@@ -189,10 +214,25 @@ export default function Header() {
             <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
               <TransitionLink
                 href="/contact"
-                className="btn-primary hidden-mobile"
-                style={{ fontSize: "0.9rem", padding: "10px 24px" }}
+                className="hidden-mobile"
+                style={{
+                  fontSize: "0.9rem",
+                  padding: "10px 24px",
+                  background: isHovered ? "var(--color-primary, #0367A6)" : "white",
+                  color: isHovered ? "white" : "var(--color-primary, #0367A6)",
+                  border: isHovered ? "1px solid var(--color-primary, #0367A6)" : "none",
+                  borderRadius: "50px",
+                  fontFamily: "var(--font-heading)",
+                  fontWeight: 600,
+                  cursor: "pointer",
+                  transition: "all 0.35s ease",
+                  textDecoration: "none",
+                  display: "inline-flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
               >
-                Get a Quote
+                Contact us
               </TransitionLink>
               <button
                 onClick={() => setIsMobileOpen(!isMobileOpen)}
@@ -224,7 +264,7 @@ export default function Header() {
             left: 0,
             right: 0,
             bottom: 0,
-            background: "rgba(9, 30, 46, 0.97)",
+            background: "rgba(3, 67, 106, 0.97)",
             backdropFilter: "blur(20px)",
             zIndex: 999,
             display: "flex",
@@ -318,7 +358,7 @@ export default function Header() {
           left: 16px;
           right: 16px;
           height: 2px;
-          background: var(--green-light);
+          background: var(--ds-color-accent);
           transform: scaleX(0);
           transform-origin: right;
           transition: transform 0.3s ease;
@@ -340,19 +380,45 @@ export default function Header() {
   );
 }
 
-function KleanjaLogo({ scrolled }: { scrolled: boolean }) {
+function KleanjaLogo({ scrolled, hovered }: { scrolled: boolean; hovered: boolean }) {
+  if (!scrolled && !hovered) {
+    return (
+      <span style={{
+        fontFamily: "var(--font-heading)",
+        fontWeight: 700,
+        fontSize: "1.75rem",
+        color: "white",
+        letterSpacing: "-0.02em"
+      }}>
+        Kleanja
+      </span>
+    );
+  }
+  if (!scrolled && hovered) {
+    return (
+      <span style={{
+        fontFamily: "var(--font-heading)",
+        fontWeight: 700,
+        fontSize: "1.75rem",
+        color: "#0367A6",
+        letterSpacing: "-0.02em"
+      }}>
+        Kleanja
+      </span>
+    );
+  }
   return (
     <div style={{ display: "flex", alignItems: "center", background: "white", padding: "6px 12px", borderRadius: "8px" }}>
-      <Image 
-        src="/logo.jpeg" 
-        alt="Kleanja Logo" 
-        width={160} 
-        height={50} 
-        style={{ 
+      <Image
+        src="/logo.jpeg"
+        alt="Kleanja Logo"
+        width={160}
+        height={50}
+        style={{
           width: "auto",
           height: "45px",
           objectFit: "contain"
-        }} 
+        }}
         priority
       />
     </div>

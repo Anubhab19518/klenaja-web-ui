@@ -1,40 +1,54 @@
 :root {
-  --ds-color-blue-primary: #1A6BA0;
-  --ds-color-blue-dark: #0D4F7A;
-  --ds-color-blue-light: #2980B9;
-  --ds-color-blue-pale: #D6EAF8;
-  --ds-color-green-primary: #3D9B3A;
-  --ds-color-green-dark: #2E7D32;
-  --ds-color-green-light: #4CAF50;
-  --ds-color-green-pale: #D5F5E3;
+  /* 5 Core Design System Palette */
+  --ds-color-primary: #0367A6;
+  --ds-color-secondary: #0378A6;
+  --ds-color-accent: #278C0B;
+  --ds-color-surface-accent: #B3D9A9;
+  --ds-color-neutral-surface: #F2F2F2;
+
+  /* Aliased Color Tokens for Design System Compatibility */
+  --ds-color-blue-primary: var(--ds-color-primary);
+  --ds-color-blue-dark: var(--ds-color-primary);
+  --ds-color-blue-light: var(--ds-color-secondary);
+  --ds-color-blue-pale: #E4F1F7;
+  --ds-color-green-primary: var(--ds-color-accent);
+  --ds-color-green-dark: #1E6B08;
+  --ds-color-green-light: var(--ds-color-accent);
+  --ds-color-green-pale: var(--ds-color-surface-accent);
+
+  /* Standard Neutrals */
   --ds-color-white: #FFFFFF;
-  --ds-color-warm-white: #FAF9F4;
-  --ds-color-off-white: #F8FAFB;
-  --ds-color-gray-50: #F5F7FA;
-  --ds-color-gray-100: #EAF0F6;
-  --ds-color-gray-200: #D5DDE6;
-  --ds-color-gray-400: #8FA8BF;
-  --ds-color-gray-600: #4A6375;
-  --ds-color-gray-800: #1E2E3B;
-  --ds-color-black: #0D1117;
-  --ds-color-success: #4CAF50;
+  --ds-color-warm-white: #F8FAF8;
+  --ds-color-off-white: var(--ds-color-neutral-surface);
+  --ds-color-gray-50: var(--ds-color-neutral-surface);
+  --ds-color-gray-100: #E6E8EA;
+  --ds-color-gray-200: #D0D5DD;
+  --ds-color-gray-400: #8896A6;
+  --ds-color-gray-600: #475467;
+  --ds-color-gray-800: #1D2939;
+  --ds-color-black: #0F172A;
+
+  /* Status Colors */
+  --ds-color-success: var(--ds-color-accent);
   --ds-color-warning: #F39C12;
   --ds-color-error: #E74C3C;
   --ds-color-purple: #9B59B6;
-  --ds-gradient-brand: linear-gradient(135deg, #0D4F7A 0%, #1A6BA0 50%, #2E7D32 100%);
-  --ds-gradient-blue: linear-gradient(135deg, #0D4F7A 0%, #1A6BA0 100%);
-  --ds-gradient-green: linear-gradient(135deg, #2E7D32 0%, #4CAF50 100%);
-  --ds-gradient-hero: linear-gradient(135deg, #061B25 0%, #0D354A 60%, #124A45 100%);
-  --ds-gradient-card: linear-gradient(145deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.05) 100%);
-  --ds-gradient-blue-pale: linear-gradient(135deg, #D6EAF8 0%, #EBF5FB 100%);
-  --ds-gradient-blue-soft: linear-gradient(135deg, #D6EAF8 0%, #D0ECF5 100%);
-  --ds-gradient-green-pale: linear-gradient(135deg, #D5F5E3 0%, #E9F7EF 100%);
-  --ds-gradient-green-soft: linear-gradient(135deg, #D5F5E3 0%, #E8F8E8 100%);
-  --ds-gradient-blue-muted: linear-gradient(135deg, #D6EAF8 0%, #EAF2FB 100%);
-  --ds-gradient-blue-gray: linear-gradient(135deg, #D6EAF8 0%, #DDE8F0 100%);
-  --ds-gradient-overlay-blue: linear-gradient(180deg,#1A6BA0,#2980B9);
-  --ds-gradient-overlay-green: linear-gradient(180deg,#3D9B3A,#4CAF50);
-  --ds-gradient-success-to-blue: linear-gradient(90deg, #4CAF50, #2980B9);
+
+  /* Gradients constructed from the 5 core colors */
+  --ds-gradient-brand: linear-gradient(135deg, #0367A6 0%, #0378A6 50%, #278C0B 100%);
+  --ds-gradient-blue: linear-gradient(135deg, #0367A6 0%, #0378A6 100%);
+  --ds-gradient-green: linear-gradient(135deg, #278C0B 0%, #B3D9A9 100%);
+  --ds-gradient-hero: linear-gradient(135deg, #012B47 0%, #0367A6 60%, #0378A6 100%);
+  --ds-gradient-card: linear-gradient(145deg, rgba(255,255,255,0.9) 0%, rgba(242,242,242,0.6) 100%);
+  --ds-gradient-blue-pale: linear-gradient(135deg, #E4F1F7 0%, #F2F2F2 100%);
+  --ds-gradient-blue-soft: linear-gradient(135deg, #E4F1F7 0%, #D0E5F2 100%);
+  --ds-gradient-green-pale: linear-gradient(135deg, #B3D9A9 0%, #E2F2DE 100%);
+  --ds-gradient-green-soft: linear-gradient(135deg, #B3D9A9 0%, #D4ECCD 100%);
+  --ds-gradient-blue-muted: linear-gradient(135deg, #E4F1F7 0%, #F2F2F2 100%);
+  --ds-gradient-blue-gray: linear-gradient(135deg, #E4F1F7 0%, #DCE6ED 100%);
+  --ds-gradient-overlay-blue: linear-gradient(180deg, #0367A6, #0378A6);
+  --ds-gradient-overlay-green: linear-gradient(180deg, #278C0B, #B3D9A9);
+  --ds-gradient-success-to-blue: linear-gradient(90deg, #278C0B, #0378A6);
 
   --ds-font-heading: var(--font-montserrat), 'Montserrat', sans-serif;
   --ds-font-body: var(--font-jakarta), 'Plus Jakarta Sans', sans-serif;

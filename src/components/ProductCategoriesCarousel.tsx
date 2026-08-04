@@ -57,7 +57,7 @@ export default function ProductCategoriesCarousel({
   return (
     <section className="products-carousel-section">
       <div className="container">
-        
+
         <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", marginBottom: "40px" }}>
           <h2 className="products-carousel-heading reveal" style={{ marginBottom: 0 }}>
             Our Products at{" "}
@@ -127,10 +127,8 @@ export default function ProductCategoriesCarousel({
                     </div>
                   </div>
 
-                  <span
-                    className="products-carousel-cta"
-                  >
-                    View {cat.title}
+                  <span className="products-carousel-cta">
+                    View {cat.title} Range
                   </span>
                 </TransitionLink>
               ))}
@@ -183,7 +181,8 @@ export default function ProductCategoriesCarousel({
           border-radius: ${CARD_RADIUS};
           aspect-ratio: 3 / 4.6;
           min-height: 460px;
-          border: 1px solid rgba(26, 107, 160, 0.07);
+          border: 1px solid rgba(3, 103, 166, 0.08);
+          position: relative;
           transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
@@ -212,28 +211,40 @@ export default function ProductCategoriesCarousel({
           transition: transform 0.5s ease;
         }
 
+        .products-carousel-visual::after {
+          content: "";
+          position: absolute;
+          inset: 45% 0 0;
+          background: linear-gradient(to bottom, transparent, rgba(15, 23, 42, 0.36));
+          pointer-events: none;
+        }
+
         .products-carousel-cta {
           display: flex;
           align-items: center;
           justify-content: center;
-          flex-shrink: 0;
-          width: 100%;
-          padding: 15px 18px;
-          background: #F7F4EE;
-          color: var(--cat-color, var(--gray-800));
-          border-top: 1px solid rgba(26, 107, 160, 0.08);
-          border-radius: ${CARD_RADIUS};
+          position: absolute;
+          z-index: 2;
+          left: 18px;
+          right: 18px;
+          bottom: 18px;
+          min-height: 44px;
+          padding: 10px 14px;
+          background: var(--warm-white);
+          color: var(--gray-800);
+          border-radius: 0 0 24px 0;
           font-family: var(--font-heading);
-          font-size: 0.8rem;
+          font-size: 0.72rem;
           font-weight: 700;
           letter-spacing: 0.02em;
           text-align: center;
-          transition: background 0.3s ease, color 0.3s ease;
+          transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease;
         }
 
         .products-carousel-card:hover .products-carousel-cta {
-          background: var(--cat-color);
-          color: white;
+          background: var(--off-white);
+          color: var(--cat-color, var(--blue-primary));
+          transform: translateY(-2px);
         }
 
         .products-carousel-arrow {

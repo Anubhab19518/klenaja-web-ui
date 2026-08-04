@@ -14,7 +14,7 @@ const geoUrl = "/maps/india.json";
 // Must precisely match the projectionConfig inside ComposableMap
 const projection = geoMercator()
   .scale(1100)
-  .center([82, 22.5])
+  .center([82, 23.2])
   .translate([400, 300]);
 
 const cities = [
@@ -43,7 +43,7 @@ const cities = [
   { name: "Jodhpur", coordinates: [73.0167, 26.2389] as [number, number] },
   { name: "Visakhapatnam", coordinates: [83.3182, 17.6868] as [number, number] },
   { name: "Patna", coordinates: [85.1376, 25.5941] as [number, number] },
-  { name: "Ranchi", coordinates: [85.3096, 23.3441] as [number, number] },  
+  { name: "Ranchi", coordinates: [85.3096, 23.3441] as [number, number] },
 ];
 
 function CurvedLine({ from, to, delay = 0 }: { from: [number, number], to: [number, number], delay: number }) {
@@ -83,15 +83,21 @@ function CurvedLine({ from, to, delay = 0 }: { from: [number, number], to: [numb
   );
 }
 
-export default function IndiaDistributionMap() {
+export default function IndiaDistributionMap({
+  large = false,
+  mapHeight = large ? "clamp(360px, 38vw, 500px)" : "200px",
+}: {
+  large?: boolean;
+  mapHeight?: string;
+}) {
   return (
-    <div className="relative w-full h-full min-h-[230px] flex flex-col justify-center items-center p-2">
-      <div style={{ position: "relative", width: "100%", height: "200px" }}>
+    <div className="relative w-full flex flex-col justify-center items-center">
+      <div style={{ position: "relative", width: "100%", height: mapHeight }}>
         <ComposableMap
           projection="geoMercator"
           projectionConfig={{
             scale: 1100,
-            center: [82, 22.5],
+            center: [82, 23.2],
           }}
           width={800}
           height={600}
@@ -99,8 +105,8 @@ export default function IndiaDistributionMap() {
         >
           <defs>
             <linearGradient id="arc-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="#1672AE" />
-              <stop offset="100%" stopColor="#3DBB5A" />
+              <stop offset="0%" stopColor="#0367A6" />
+              <stop offset="100%" stopColor="#278C0B" />
             </linearGradient>
           </defs>
 
@@ -110,12 +116,12 @@ export default function IndiaDistributionMap() {
                 <Geography
                   key={geo.rsmKey}
                   geography={geo}
-                  fill="#F2F7FB"
-                  stroke="#D0E3F0"
+                  fill="#F2F2F2"
+                  stroke="#D0D5DD"
                   strokeWidth={1}
                   style={{
                     default: { outline: "none" },
-                    hover: { fill: "#E2F0F9", outline: "none" },
+                    hover: { fill: "#B3D9A9", outline: "none" },
                     pressed: { outline: "none" },
                   }}
                 />
@@ -124,11 +130,11 @@ export default function IndiaDistributionMap() {
           </Geographies>
 
           {routes.map((route, index) => (
-            <CurvedLine 
-              key={index} 
-              from={route.from as [number, number]} 
-              to={route.to as [number, number]} 
-              delay={index * 0.4} 
+            <CurvedLine
+              key={index}
+              from={route.from as [number, number]}
+              to={route.to as [number, number]}
+              delay={index * 0.4}
             />
           ))}
 
@@ -139,35 +145,11 @@ export default function IndiaDistributionMap() {
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ delay: index * 0.1, duration: 0.4 }}
               >
-                <circle r={4} fill="#1672AE" stroke="white" strokeWidth={1.5} />
+                <circle r={4} fill="#0367A6" stroke="white" strokeWidth={1.5} />
               </motion.g>
             </Marker>
           ))}
         </ComposableMap>
-      </div>
-
-      <div style={{ textAlign: "center", marginTop: "12px" }}>
-        <div style={{
-          fontFamily: "var(--font-heading)",
-          fontSize: "1.1rem",
-          fontWeight: 800,
-          background: "var(--gradient-brand)",
-          WebkitBackgroundClip: "text",
-          WebkitTextFillColor: "transparent",
-          letterSpacing: "0.05em"
-        }}>
-          PAN INDIA
-        </div>
-        <div style={{
-          fontFamily: "var(--font-heading)",
-          fontSize: "0.75rem",
-          fontWeight: 600,
-          color: "var(--gray-400)",
-          textTransform: "uppercase",
-          letterSpacing: "0.1em"
-        }}>
-          Distribution Network
-        </div>
       </div>
     </div>
   );

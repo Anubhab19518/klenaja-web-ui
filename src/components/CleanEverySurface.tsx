@@ -7,107 +7,114 @@ import TransitionLink from "./TransitionLink";
 
 export default function CleanEverySurface() {
   return (
-    <section className="relative flex min-h-[100svh] items-center py-24 sm:py-28" style={{ background: "var(--warm-white)" }}>
-
-      {/* Single keyframe — bg pans across the ONE h2 element */}
-      <style>{`
-        @keyframes bgSlide {
-          0%   { background-position: 0% 50%; }
-          100% { background-position: 100% 50%; }
-        }
-      `}</style>
-
-      <div className="relative mx-auto w-full max-w-7xl px-5 sm:px-10">
-
-        {/* ── Relative wrapper: anchors the absolute heart card ── */}
-        <div className="relative">
-
-          {/*
-            ── Single <h2> = ONE element = ONE unified background ──
-            Both "Clean Every" and "Surface." share the same background-image.
-            <br/> creates the natural line break but the bg is a single image
-            spanning the full element box — it pans via animation.
-            paddingTop / paddingBottom prevent ascender (Y) and
-            descender (.) from being clipped by the element's content box.
-          */}
-          <motion.h2
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={motionTokens.cleanEverySurfaceReveal}
-            className="font-black text-center"
-            style={{
-              fontFamily: "var(--font-heading)",
-              fontSize: "clamp(3.2rem, 10.5vw, 9rem)",
-              lineHeight: 1.12,           /* spacing between the two lines */
-              letterSpacing: "-0.04em",
-              /* Prevent Y top and full-stop bottom from clipping */
-              paddingTop: "0.08em",
-              paddingBottom: "0.14em",
-              /* — Unified animated background — */
-              backgroundImage: "url('/banner-3.jpg')",
-              backgroundSize: "200% auto",
-              backgroundPosition: "0% 50%",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundClip: "text",
-              color: "transparent",
-              animation: "bgSlide 14s ease-in-out infinite alternate",
-            }}
+    <section
+      className="relative flex flex-col items-center justify-center py-16 sm:py-24 overflow-hidden"
+      style={{ background: "var(--warm-white)" }}
+    >
+      <div className="relative mx-auto w-full max-w-6xl px-4 sm:px-8 flex flex-col items-center">
+        {/* SVG Container: Clips video strictly to center-aligned text */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={motionTokens.cleanEverySurfaceReveal}
+          className="w-full max-w-5xl mx-auto"
+        >
+          <svg
+            viewBox="0 0 1000 340"
+            className="w-full h-auto overflow-visible"
+            aria-label="Clean Every Surface"
           >
-            Clean Every
-            <br />
-            Surface.
-          </motion.h2>
+            <defs>
+              <clipPath id="clean-video-text-clip">
+                {/* Line 1: Clean Every (Center Aligned) */}
+                <text
+                  x="500"
+                  y="125"
+                  textAnchor="middle"
+                  fontFamily="var(--font-heading)"
+                  fontWeight="800"
+                  fontSize="125"
+                  letterSpacing="-0.04em"
+                >
+                  Clean Every
+                </text>
 
-          {/*
-            ── Heart card ──
-            Absolutely positioned over the right side of the second line.
-            "Surface." is centred, so its right edge sits at roughly 50%+.
-            The card sits at bottom-[paddingBottom] right-0, floating in the
-            white space to the right of "Surface." — exactly like the reference.
-          */}
-          <motion.div
-            initial={{ opacity: 0, x: 32 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={motionTokens.cleanEverySurfaceCard}
-            className="mx-auto mt-8 flex max-w-[300px] items-center gap-3 sm:absolute sm:right-0 sm:bottom-[0.14em] sm:mt-0 sm:max-w-[260px]"
-            style={{ maxWidth: "260px" }}
-          >
-            {/* Outlined heart — matches reference */}
-            <Heart
-              className="shrink-0"
-              size={60}
-              strokeWidth={1.3}
-              style={{ color: colors.bluePrimary }}
-            />
+                {/* Line 2: Surface. (Center Aligned) */}
+                <text
+                  x="500"
+                  y="285"
+                  textAnchor="middle"
+                  fontFamily="var(--font-heading)"
+                  fontWeight="800"
+                  fontSize="125"
+                  letterSpacing="-0.04em"
+                >
+                  Surface.
+                </text>
+              </clipPath>
+            </defs>
 
-            {/* Description + CTA */}
-            <div>
-              <p
-                className="text-[0.8rem] leading-relaxed text-gray-600"
-                style={{ fontFamily: "var(--font-body)" }}
-              >
-                On every surface we clean, we are dedicated to delivering{" "}
-                <strong>spotless results</strong> and giving your space a{" "}
-                <strong>fresh start.</strong>
-              </p>
+            {/* Video element clipped strictly inside text paths */}
+            <g clipPath="url(#clean-video-text-clip)">
+              <foreignObject x="0" y="0" width="1000" height="340">
+                <video
+                  src="/clean_every_surface_video.mp4"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className="w-full h-full object-cover"
+                />
+              </foreignObject>
+            </g>
+          </svg>
+        </motion.div>
 
-              <TransitionLink
-                href="/products"
-                className="mt-3 inline-flex border border-[var(--ds-color-blue-primary)] px-4 py-[7px] text-[0.62rem] font-bold uppercase tracking-[0.1em] text-[var(--ds-color-blue-primary)] rounded-br-lg transition-all duration-300 hover:bg-[var(--ds-color-blue-primary)] hover:text-white"
-                style={{ fontFamily: "var(--font-heading)" }}
-              >
-                Our Products
-              </TransitionLink>
-            </div>
-          </motion.div>
+        {/* Centered Heart Icon, Copy Paragraph, and Pill CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={motionTokens.cleanEverySurfaceCard}
+          className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-5 sm:gap-7 text-center sm:text-left max-w-xl mx-auto"
+        >
+          <Heart
+            className="shrink-0"
+            size={64}
+            strokeWidth={1.4}
+            style={{ color: "var(--ds-color-accent)" }}
+          />
 
-        </div>
+          <div className="flex flex-col items-center sm:items-start gap-3.5 max-w-[340px]">
+            <p
+              className="text-xs sm:text-sm text-[var(--ds-color-gray-600)] leading-snug"
+              style={{ fontFamily: "var(--font-body)" }}
+            >
+              In every business action, we are dedicated to reducing our{" "}
+              <strong className="font-bold text-[var(--ds-color-black)]">
+                environmental footprint
+              </strong>{" "}
+              and giving back to the{" "}
+              <strong className="font-bold text-[var(--ds-color-black)]">
+                community.
+              </strong>
+            </p>
 
+            <TransitionLink
+              href="/about"
+              className="inline-flex items-center justify-center rounded-full border border-[var(--ds-color-accent)] px-7 py-2.5 text-[0.7rem] font-bold uppercase tracking-wider text-[var(--ds-color-accent)] transition-all duration-300 hover:bg-[var(--ds-color-accent)] hover:text-white hover:shadow-md hover:scale-[1.02]"
+              style={{ fontFamily: "var(--font-heading)" }}
+            >
+              ABOUT US
+            </TransitionLink>
+          </div>
+        </motion.div>
       </div>
-
     </section>
   );
 }
+
+
+
+
