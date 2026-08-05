@@ -3,8 +3,6 @@ import { Montserrat, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import TransitionProvider from "@/components/TransitionProvider";
-import TransitionOverlay from "@/components/TransitionOverlay";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -40,14 +38,11 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${montserrat.variable} ${jakarta.variable}`}>
       <body className="font-sans antialiased">
-        <TransitionProvider>
-          <TransitionOverlay />
-          <Header />
-          <main>
-            {children}
-          </main>
-          <Footer />
-        </TransitionProvider>
+        <Header />
+        <main>
+          {children}
+        </main>
+        <Footer />
       </body>
     </html>
   );

@@ -242,7 +242,7 @@ export default function ProductCategoriesCarousel({
         }
 
         .products-carousel-card:hover .products-carousel-cta {
-          background: var(--off-white);
+          background: var(--warm-white);
           color: var(--cat-color, var(--blue-primary));
           transform: translateY(-2px);
         }

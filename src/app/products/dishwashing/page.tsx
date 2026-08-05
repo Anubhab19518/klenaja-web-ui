@@ -9,15 +9,23 @@ export const metadata = {
 const products = [
   {
     name: "Dishwash Liquid",
-    badge: "Grease Cut",
+    description: "Dishwash liquids with strong grease-cutting action",
+    detailsImage: "/dishwashing/landing/dishwash-1.jpg"
   },
   {
     name: "Concentrated Dishwash",
-    badge: "Concentrated",
+    description: "Concentrated dish cleaning solutions for bulk users",
+    detailsImage: "/dishwashing/landing/dishwash-2.jpg"
   },
   {
     name: "Commercial Kitchen Cleaner",
-    badge: "Commercial",
+    description: "Commercial kitchen cleaning products",
+    detailsImage: "/dishwashing/landing/dishwash-3.jpg"
+  },
+  {
+    name: "Gentle Hand Formulations",
+    description: "Gentle on hands, tough on grease",
+    detailsImage: "/dishwashing/landing/dishwash-4.jpg"
   },
 ];
 
@@ -27,18 +35,14 @@ export default function DishwashingPage() {
       title="Dishwashing Solutions"
       tagline="Sparkling clean, every time."
       description="Kleanja's dishwashing solutions handle tough grease and food residue while ensuring hygienic cleaning for domestic kitchens and commercial food service environments."
-      fullDescription="Kleanja's dishwashing solutions are developed to handle tough grease and food residue while ensuring hygienic cleaning of utensils. Our products are suitable for both domestic kitchens and commercial food service environments. We offer dishwash liquids that provide strong grease-cutting action while being safe for hands. Concentrated dishwashing solutions are also available for bulk users, offering higher efficiency and reduced cost per use. Our products are designed to deliver sparkling clean utensils with minimal effort, making them an essential part of everyday cleaning routines."
+      fullDescription="Kleanja's dishwashing solutions remove tough grease and food residue for sparkling clean utensils in homes and commercial kitchens. The line includes hand-safe dishwash liquids and high-efficiency, cost-effective concentrated formulas for bulk users."
       icon="🍽️"
       color={colors.greenDark}
       gradient={gradients.greenSoft}
       img="/dishwash.png"
+      heroImage="/products/dishwash.jpg"
       products={products}
-      keyPoints={[
-        "Dishwash liquids with strong grease-cutting action",
-        "Concentrated dish cleaning solutions for bulk users",
-        "Commercial kitchen cleaning products",
-        "Gentle on hands, tough on grease",
-      ]}
+      keyPoints={[]}
     />
   );
 }

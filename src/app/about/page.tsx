@@ -16,7 +16,7 @@ export default function AboutPage() {
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => entries.forEach((e) => e.isIntersecting && e.target.classList.add("visible")),
-      { threshold: 0.1 }
+      { threshold: 0.08, rootMargin: '0px 0px -50px 0px' }
     );
     document.querySelectorAll(".reveal, .reveal-left, .reveal-right").forEach((el) => observer.observe(el));
     return () => observer.disconnect();
@@ -40,12 +40,12 @@ export default function AboutPage() {
           </p>
         </div>
         <div style={{ position: "absolute", bottom: -2, left: 0, right: 0 }}>
-          <svg viewBox="0 0 1440 60" fill="none"><path d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z" fill="var(--off-white)" /></svg>
+          <svg viewBox="0 0 1440 60" fill="none"><path d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z" fill="var(--warm-white)" /></svg>
         </div>
       </section>
 
       {/* Brand Story */}
-      <section className="section" style={{ background: "var(--off-white)" }}>
+      <section className="section" style={{ background: "var(--warm-white)" }}>
         <div className="container">
           <div
             style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "80px", alignItems: "center" }}
@@ -96,7 +96,7 @@ export default function AboutPage() {
       </section>
 
       {/* Our Values */}
-      <section className="section" style={{ background: "white" }}>
+      <section className="section" style={{ background: "var(--warm-white)" }}>
         <div className="container">
           <div style={{ textAlign: "center", marginBottom: "48px" }}>
             <span className="section-label section-label-blue reveal">Our Values</span>
@@ -108,7 +108,7 @@ export default function AboutPage() {
             {values.map((val, i) => (
               <div
                 key={val.title}
-                className={`values-card values-card-${i} reveal reveal-delay-${(i % 2) + 1}`}
+                className={`values-card values-card-${i} reveal reveal-delay-${i + 1}`}
               >
                 <Image
                   src={val.img}
@@ -121,10 +121,10 @@ export default function AboutPage() {
                 <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.3) 60%, rgba(0,0,0,0) 100%)", zIndex: 1 }} />
 
                 <div style={{ position: "relative", zIndex: 2, color: "white" }}>
-                  <h3 style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: "clamp(1.5rem, 2vw, 1.8rem)", marginBottom: "12px", textShadow: "0 2px 10px rgba(0,0,0,0.5)" }}>
+                  <h3 style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: "1.45rem", marginBottom: "6px", textShadow: "0 2px 10px rgba(0,0,0,0.4)" }}>
                     {val.title}
                   </h3>
-                  <p style={{ fontSize: "0.95rem", color: "rgba(255,255,255,0.85)", lineHeight: 1.6, maxWidth: "90%", textShadow: "0 1px 4px rgba(0,0,0,0.5)" }}>
+                  <p style={{ fontSize: "0.95rem", color: "rgba(255,255,255,0.85)", lineHeight: 1.45, maxWidth: "90%", marginBottom: "16px", textShadow: "0 1px 4px rgba(0,0,0,0.4)" }}>
                     {val.desc}
                   </p>
                 </div>
@@ -199,27 +199,20 @@ export default function AboutPage() {
         .values-grid {
           display: grid;
           grid-template-columns: repeat(5, 1fr);
-          gap: 24px;
+          gap: 16px;
         }
         .values-card {
           position: relative;
           overflow: hidden;
-          border-radius: 24px;
+          border-radius: 12px;
           min-height: 380px;
           display: flex;
           flex-direction: column;
           justify-content: flex-end;
-          padding: 36px;
+          padding: 24px;
           box-shadow: 0 12px 32px rgba(0,0,0,0.1);
           cursor: default;
-          transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s ease;
-        }
-        .values-card:hover {
-          transform: translateY(-6px);
-          box-shadow: 0 20px 48px rgba(0,0,0,0.2) !important;
-        }
-        .values-card:hover .values-bg-img {
-          transform: scale(1.08) !important;
+          /* transition removed to allow .reveal to animate correctly */
         }
         .values-card-0 { grid-column: span 2; }
         .values-card-1 { grid-column: span 3; }

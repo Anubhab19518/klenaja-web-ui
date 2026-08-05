@@ -45,7 +45,7 @@ export default function IndustryTicker({ industries }: Props) {
     <section
       style={{
         padding: "90px 0",
-        background: "var(--off-white)",
+        background: "var(--warm-white)",
         overflow: "hidden",
       }}
     >
@@ -88,7 +88,7 @@ export default function IndustryTicker({ industries }: Props) {
               zIndex: 5,
               pointerEvents: "none",
               background:
-                "linear-gradient(to right, var(--off-white), transparent)",
+                "linear-gradient(to right, var(--warm-white), transparent)",
             }}
           />
 
@@ -103,7 +103,7 @@ export default function IndustryTicker({ industries }: Props) {
               zIndex: 5,
               pointerEvents: "none",
               background:
-                "linear-gradient(to left, var(--off-white), transparent)",
+                "linear-gradient(to left, var(--warm-white), transparent)",
             }}
           />
 

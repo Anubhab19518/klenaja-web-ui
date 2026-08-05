@@ -319,9 +319,9 @@ function WhyKleanjaSection() {
             />
             <div className="bento-card-overlay" />
             <div className="bento-card-body">
-              <h4 className="bento-card-title">Project name</h4>
+              <h4 className="bento-card-title">Assured Quality</h4>
               <p className="bento-card-desc">
-                Description of the project
+                Rigorous testing and strict controls ensure every batch meets quality benchmarks.
               </p>
               <TransitionLink href="/products" className="bento-yellow-pill-btn">
                 Explore Now
@@ -330,7 +330,7 @@ function WhyKleanjaSection() {
           </div>
 
           {/* Card 3: Bottom-Left Image Card */}
-          <div className="bento-card bento-card-3 reveal reveal-delay-1">
+          <div className="bento-card bento-card-3 reveal reveal-delay-3">
             <Image
               src="/wideproductrange.jpg"
               alt="Project name"
@@ -340,10 +340,7 @@ function WhyKleanjaSection() {
             />
             <div className="bento-card-overlay" />
             <div className="bento-card-body">
-              <h4 className="bento-card-title">Project name</h4>
-              <p className="bento-card-desc">
-                Description of the project
-              </p>
+              <h4 className="bento-card-title">Wide Product Range</h4>
               <TransitionLink href="/products" className="bento-yellow-pill-btn">
                 Explore Now
               </TransitionLink>
@@ -351,7 +348,7 @@ function WhyKleanjaSection() {
           </div>
 
           {/* Card 4: Bottom-Middle Photo Card */}
-          <div className="bento-card bento-card-4 reveal reveal-delay-2">
+          <div className="bento-card bento-card-4 reveal reveal-delay-4">
             <Image
               src="/ecofriendly.jpg"
               alt="Eco-Friendly Formulations"
@@ -362,7 +359,7 @@ function WhyKleanjaSection() {
           </div>
 
           {/* Card 5: Bottom-Right Solid Black Card */}
-          <div className="bento-card bento-card-5 reveal reveal-delay-3">
+          <div className="bento-card bento-card-5 reveal reveal-delay-5">
             <div className="bento-black-content">
               <div>
                 <h3 className="bento-black-title">
@@ -611,7 +608,7 @@ export default function Home() {
           }
         });
       },
-      { threshold: 0.1 }
+      { threshold: 0.08, rootMargin: '0px 0px -50px 0px' }
     );
 
     const elements = document.querySelectorAll(".reveal, .reveal-left, .reveal-right");
@@ -746,7 +743,7 @@ export default function Home() {
       <IndustriesSlider />
 
       {/* ============ B2B HIGHLIGHT ============ */}
-      <section className="section" style={{ background: "var(--off-white)" }}>
+      <section className="section" style={{ background: "var(--warm-white)" }}>
         <div className="container">
           <div
             style={{

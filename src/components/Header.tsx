@@ -39,7 +39,7 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const showWhiteBg = isHovered;
+  const showWhiteBg = isHovered || isScrolled;
   const linkColor = showWhiteBg ? "#0367A6" : "rgba(255, 255, 255, 0.95)";
 
   return (
@@ -54,9 +54,9 @@ export default function Header() {
           right: 0,
           zIndex: 1000,
           transition: "all 0.4s ease",
-          background: isHovered ? "white" : isScrolled ? "rgba(3, 67, 106, 0.98)" : "transparent",
-          backdropFilter: isHovered ? "none" : isScrolled ? "blur(12px)" : "none",
-          borderBottom: isHovered ? "1px solid rgba(0,0,0,0.08)" : isScrolled ? "1px solid rgba(255,255,255,0.1)" : "1px solid transparent",
+          background: showWhiteBg ? "white" : "transparent",
+          backdropFilter: "none",
+          borderBottom: showWhiteBg ? "1px solid rgba(0,0,0,0.08)" : "1px solid transparent",
           padding: 0,
         }}
       >
@@ -218,9 +218,9 @@ export default function Header() {
                 style={{
                   fontSize: "0.9rem",
                   padding: "10px 24px",
-                  background: isHovered ? "var(--color-primary, #0367A6)" : "white",
-                  color: isHovered ? "white" : "var(--color-primary, #0367A6)",
-                  border: isHovered ? "1px solid var(--color-primary, #0367A6)" : "none",
+                  background: showWhiteBg ? "var(--color-primary, #0367A6)" : "white",
+                  color: showWhiteBg ? "white" : "var(--color-primary, #0367A6)",
+                  border: showWhiteBg ? "1px solid var(--color-primary, #0367A6)" : "none",
                   borderRadius: "50px",
                   fontFamily: "var(--font-heading)",
                   fontWeight: 600,
@@ -368,7 +368,7 @@ export default function Header() {
           transform-origin: left;
         }
         .nav-link:hover {
-          color: white !important;
+          opacity: 0.8;
         }
         
         @media (max-width: 768px) {
@@ -381,46 +381,36 @@ export default function Header() {
 }
 
 function KleanjaLogo({ scrolled, hovered }: { scrolled: boolean; hovered: boolean }) {
-  if (!scrolled && !hovered) {
-    return (
-      <span style={{
-        fontFamily: "var(--font-heading)",
-        fontWeight: 700,
-        fontSize: "1.75rem",
-        color: "white",
-        letterSpacing: "-0.02em"
-      }}>
-        Kleanja
-      </span>
-    );
-  }
-  if (!scrolled && hovered) {
-    return (
-      <span style={{
-        fontFamily: "var(--font-heading)",
-        fontWeight: 700,
-        fontSize: "1.75rem",
-        color: "#0367A6",
-        letterSpacing: "-0.02em"
-      }}>
-        Kleanja
-      </span>
-    );
-  }
+  const showWhiteText = !scrolled && !hovered;
+  const textColor = showWhiteText ? "white" : "#0367A6";
+  const logoFilter = showWhiteText ? "brightness(0) invert(1)" : "none";
+
   return (
-    <div style={{ display: "flex", alignItems: "center", background: "white", padding: "6px 12px", borderRadius: "8px" }}>
+    <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
       <Image
-        src="/logo.jpeg"
+        src="/klenja_logo_without_text_transparent.png"
         alt="Kleanja Logo"
         width={160}
         height={50}
         style={{
           width: "auto",
           height: "45px",
-          objectFit: "contain"
+          objectFit: "contain",
+          filter: logoFilter,
+          transition: "filter 0.3s ease"
         }}
         priority
       />
+      <span style={{
+        fontFamily: "var(--font-heading)",
+        fontWeight: 700,
+        fontSize: "1.75rem",
+        color: textColor,
+        letterSpacing: "-0.02em",
+        transition: "color 0.3s ease"
+      }}>
+        Kleanja
+      </span>
     </div>
   );
 }

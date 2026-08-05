@@ -9,15 +9,23 @@ export const metadata = {
 const products = [
   {
     name: "Glass Cleaner",
-    badge: "Streak Free",
+    description: "Glass cleaners for streak-free shine on mirrors and windows",
+    detailsImage: "/glass-cleaner/landing/glass-1.jpg"
   },
   {
     name: "Multi-Surface Cleaner",
-    badge: "Multi-Surface",
+    description: "Multi-surface cleaners for tables and countertops",
+    detailsImage: "/glass-cleaner/landing/glass-2.jpg"
   },
   {
     name: "Office & Commercial Spray",
-    badge: "Commercial",
+    description: "Office and commercial cleaning sprays",
+    detailsImage: "/glass-cleaner/landing/glass-3.jpg"
+  },
+  {
+    name: "Fast-Drying Solution",
+    description: "Fast-drying, residue-free formulations",
+    detailsImage: "/glass-cleaner/landing/glass-4.jpg"
   },
 ];
 
@@ -27,18 +35,14 @@ export default function GlassSurfacePage() {
       title="Glass & Surface Cleaners"
       tagline="Streak-free brilliance."
       description="Crystal-clear glass cleaners and multi-surface sprays that effectively remove dust, fingerprints, and smudges, leaving surfaces spotless and polished."
-      fullDescription="Clean and shiny surfaces contribute significantly to the overall appearance of any space. Kleanja's glass and surface cleaners are formulated to provide streak-free cleaning for glass, mirrors, and other surfaces. These products effectively remove dust, fingerprints, and smudges, leaving surfaces clear and polished. Multi-surface cleaners are also available for cleaning tables, countertops, office furniture, and electronic surfaces. Our solutions are widely used in homes, offices, retail outlets, and commercial establishments where presentation and cleanliness are equally important."
+      fullDescription="Kleanja’s streak-free glass and multi-surface cleaners remove dust, fingerprints, and smudges from mirrors, countertops, and electronics, leaving homes and offices clear and polished."
       icon="✨"
       color={colors.bluePrimary}
       gradient={gradients.blueMuted}
       img="/glass-cleaner.png"
+      heroImage="/products/glass.jpg"
       products={products}
-      keyPoints={[
-        "Glass cleaners for streak-free shine on mirrors and windows",
-        "Multi-surface cleaners for tables and countertops",
-        "Office and commercial cleaning sprays",
-        "Fast-drying, residue-free formulations",
-      ]}
+      keyPoints={[]}
     />
   );
 }

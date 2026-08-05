@@ -92,7 +92,7 @@ export default function ProductsPage() {
             observer.unobserve(e.target); // animate once only
           }
         }),
-      { threshold: 0.15 }
+      { threshold: 0.08, rootMargin: '0px 0px -50px 0px' }
     );
     cardRefs.current.forEach((el) => el && observer.observe(el));
     return () => observer.disconnect();
@@ -167,13 +167,13 @@ export default function ProductsPage() {
         </div>
         <div style={{ position: "absolute", bottom: -2, left: 0, right: 0 }}>
           <svg viewBox="0 0 1440 60" fill="none">
-            <path d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z" fill="var(--off-white)" />
+            <path d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z" fill="var(--warm-white)" />
           </svg>
         </div>
       </section>
 
       {/* Zig-Zag Categories */}
-      <section className="section" style={{ background: "var(--off-white)" }}>
+      <section className="section" style={{ background: "var(--warm-white)" }}>
         <div className="container" style={{ maxWidth: "1100px" }}>
           {categories.map((cat, i) => {
             const Icon = cat.icon;
@@ -193,7 +193,7 @@ export default function ProductsPage() {
                     display: "grid",
                     gridTemplateColumns: isEven ? "420px 1fr" : "1fr 420px",
                     minHeight: "340px",
-                    background: "white",
+                    background: "var(--warm-white)",
                     borderRadius: "28px",
                     overflow: "hidden",
                     boxShadow: "0 8px 40px rgba(26,107,160,0.09)",

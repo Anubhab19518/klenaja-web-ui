@@ -132,13 +132,13 @@ export default function Footer() {
           {/* Brand Column */}
           <div>
             <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "20px" }}>
-              <div style={{ background: "white", padding: "8px", borderRadius: "12px", display: "inline-block" }}>
+              <div style={{ display: "inline-block" }}>
                 <Image
-                  src="/logo.jpeg"
+                  src="/klenja_logo_without_text_transparent.png"
                   alt="Kleanja Logo"
-                  width={300}
-                  height={300}
-                  style={{ width: "auto", height: "52px" }}
+                  width={160}
+                  height={50}
+                  style={{ width: "auto", height: "45px" }}
                 />
               </div>
             </div>

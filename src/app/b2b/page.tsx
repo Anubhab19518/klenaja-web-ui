@@ -45,7 +45,7 @@ export default function B2BPage() {
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => entries.forEach((e) => e.isIntersecting && e.target.classList.add("visible")),
-      { threshold: 0.1 }
+      { threshold: 0.08, rootMargin: '0px 0px -50px 0px' }
     );
     document.querySelectorAll(".reveal, .reveal-left, .reveal-right").forEach((el) => observer.observe(el));
     return () => observer.disconnect();
@@ -119,12 +119,12 @@ export default function B2BPage() {
           </div>
         </div>
         <div style={{ position: "absolute", bottom: -2, left: 0, right: 0 }}>
-          <svg viewBox="0 0 1440 60" fill="none"><path d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z" fill="var(--off-white)" /></svg>
+          <svg viewBox="0 0 1440 60" fill="none"><path d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z" fill="var(--warm-white)" /></svg>
         </div>
       </section>
 
       {/* B2B Capabilities */}
-      <section className="section" style={{ background: "var(--off-white)" }}>
+      <section className="section" style={{ background: "var(--warm-white)" }}>
         <div className="container">
           <div style={{ textAlign: "center", marginBottom: "48px" }}>
             <span className="section-label reveal">Our Capabilities</span>
@@ -133,7 +133,7 @@ export default function B2BPage() {
             </h2>
           </div>
           <div
-            style={{ display: "grid", gridTemplateColumns: "repeat(12, 1fr)", gap: "20px" }}
+            style={{ display: "grid", gridTemplateColumns: "repeat(12, 1fr)", gap: "16px" }}
             className="capabilities-grid"
           >
             {capabilities.map((cap, i) => (
@@ -144,10 +144,10 @@ export default function B2BPage() {
                   position: "relative",
                   minHeight: "250px",
                   overflow: "hidden",
-                  borderRadius: "24px",
+                  borderRadius: "12px",
                   display: "flex",
                   alignItems: "flex-end",
-                  padding: "30px",
+                  padding: "24px",
                   background: "var(--gray-800)",
                 }}
               >
@@ -169,11 +169,12 @@ export default function B2BPage() {
                     zIndex: 1,
                     fontFamily: "var(--font-heading)",
                     fontWeight: 700,
-                    fontSize: "clamp(1.35rem, 2.2vw, 2rem)",
+                    fontSize: "1.45rem",
                     color: "white",
-                    lineHeight: 1.08,
+                    lineHeight: 1.2,
                     letterSpacing: "-0.02em",
-                    margin: 0,
+                    marginBottom: "6px",
+                    textShadow: "0 2px 10px rgba(0,0,0,0.4)",
                     maxWidth: "12ch",
                   }}
                 >
@@ -213,31 +214,20 @@ export default function B2BPage() {
 
           {/* 3 × 2 Photo Card Grid */}
           <div
-            style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "20px" }}
+            style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "16px" }}
             className="industries-photo-grid"
           >
             {industries.map((ind, i) => (
               <div
                 key={ind.name}
-                className={`industry-photo-card reveal reveal-delay-${(i % 3) + 1}`}
+                className={`industry-photo-card reveal reveal-delay-${i + 1}`}
                 style={{
                   position: "relative",
-                  borderRadius: "20px",
+                  borderRadius: "12px",
                   overflow: "hidden",
                   height: "340px",
                   cursor: "default",
-                  transition: "transform 0.4s cubic-bezier(0.22,1,0.36,1), box-shadow 0.4s ease",
                   boxShadow: "0 8px 32px rgba(0,0,0,0.35)",
-                }}
-                onMouseEnter={(e) => {
-                  const el = e.currentTarget as HTMLDivElement;
-                  el.style.transform = "translateY(-8px) scale(1.02)";
-                  el.style.boxShadow = `0 28px 56px rgba(0,0,0,0.5), 0 0 0 1px ${ind.color}60`;
-                }}
-                onMouseLeave={(e) => {
-                  const el = e.currentTarget as HTMLDivElement;
-                  el.style.transform = "translateY(0) scale(1)";
-                  el.style.boxShadow = "0 8px 32px rgba(0,0,0,0.35)";
                 }}
               >
                 {/* Background photo */}
@@ -283,7 +273,7 @@ export default function B2BPage() {
                     bottom: 0,
                     left: 0,
                     right: 0,
-                    padding: "28px 28px 26px",
+                    padding: "24px",
                   }}
                 >
                   {/* Icon chip */}
@@ -307,20 +297,22 @@ export default function B2BPage() {
                     style={{
                       fontFamily: "var(--font-heading)",
                       fontWeight: 700,
-                      fontSize: "1.1rem",
+                      fontSize: "1.45rem",
                       color: "white",
                       marginBottom: "6px",
                       lineHeight: 1.2,
+                      textShadow: "0 2px 10px rgba(0,0,0,0.4)",
                     }}
                   >
                     {ind.name}
                   </h3>
                   <p
                     style={{
-                      fontSize: "0.82rem",
-                      color: "rgba(255,255,255,0.6)",
-                      lineHeight: 1.55,
-                      margin: 0,
+                      fontSize: "0.95rem",
+                      color: "rgba(255,255,255,0.85)",
+                      lineHeight: 1.45,
+                      marginBottom: "16px",
+                      textShadow: "0 1px 4px rgba(0,0,0,0.4)",
                     }}
                     className="industry-card-desc"
                   >
@@ -441,10 +433,12 @@ export default function B2BPage() {
         .capability-card-1 { grid-column: span 7; }
         .capability-card-2 { grid-column: span 7; }
         .capability-card-3 { grid-column: span 5; }
-        .capability-card:hover .capability-card-image { transform: scale(1.06); }
-        .industry-photo-card:hover .industry-card-photo {
-          transform: scale(1.06);
-        }
+        
+        // .capability-card:hover .capability-card-image { transform: scale(1.06); }
+        // .industry-photo-card:hover .industry-card-photo {
+          // transform: scale(1.06);
+        // }
+        
         .industry-card-desc {
           transition: opacity 0.3s ease;
           opacity: 0.75;

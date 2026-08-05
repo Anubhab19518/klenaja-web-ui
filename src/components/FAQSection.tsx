@@ -94,7 +94,7 @@ export default function FAQSection() {
 
       <style>{`
         .faq-section {
-          background: var(--ds-color-neutral-surface);
+          background: var(--warm-white);
           padding: 96px 0;
         }
 

@@ -1,5 +1,5 @@
 "use client";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import TransitionLink from "./TransitionLink";
 import Image from "next/image";
@@ -12,6 +12,7 @@ interface Product {
   variants?: string[];
   badge?: string;
   img?: string; // optional per-product image
+  detailsImage?: string; // image for the tabbed layout
 }
 
 interface CategoryPageProps {
@@ -19,10 +20,11 @@ interface CategoryPageProps {
   tagline: string;
   description: string;
   fullDescription: string;
-  icon: any;
+  icon?: any;
   color: string;
   gradient: string;
   img: string | null;
+  heroImage?: string;
   products: Product[];
   keyPoints: string[];
 }
@@ -36,13 +38,16 @@ export default function ProductCategoryPage({
   color,
   gradient,
   img,
+  heroImage,
   products,
   keyPoints,
 }: CategoryPageProps) {
+  const [activeTab, setActiveTab] = useState(0);
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => entries.forEach((e) => e.isIntersecting && e.target.classList.add("visible")),
-      { threshold: 0.12 }
+      { threshold: 0.08, rootMargin: '0px 0px -50px 0px' }
     );
     document.querySelectorAll(".reveal, .reveal-left, .reveal-right").forEach((el) => observer.observe(el));
     return () => observer.disconnect();
@@ -58,29 +63,29 @@ export default function ProductCategoryPage({
     <>
       {/* Hero */}
       <section
+        className="home-hero"
         style={{
-          background: "var(--gradient-hero)",
-          paddingTop: "120px",
-          paddingBottom: "80px",
+          background: `linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.35)), url('${heroImage || "/hero_image.jpg"}') no-repeat center center`,
+          backgroundSize: "cover",
+          minHeight: "100vh",
+          display: "flex",
+          flexDirection: "column",
           position: "relative",
           overflow: "hidden",
-          color: "white",
         }}
       >
-        <div className="hero-blob" style={{ width: "400px", height: "400px", top: "-100px", right: "-100px", background: color }} />
-        <div className="hero-blob" style={{ width: "250px", height: "250px", bottom: "-80px", left: "5%", background: "var(--green-dark)" }} />
-
-        <div className="container" style={{ position: "relative", zIndex: 2 }}>
+        <div className="container" style={{ position: "relative", zIndex: 2, width: "100%", height: "100%", display: "flex", flexDirection: "column", justifyContent: "flex-end", flexGrow: 1, paddingBottom: "100px", paddingTop: "160px" }}>
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "1fr auto",
-              gap: "60px",
-              alignItems: "center",
+              gridTemplateColumns: "1.2fr 0.8fr",
+              gap: "40px",
+              alignItems: "end",
             }}
-            className="cat-hero-grid"
+            className="hero-grid"
           >
-            <div>
+            {/* Left — Text */}
+            <div className="home-hero-copy" style={{ textAlign: "left" }}>
               <TransitionLink
                 href="/products"
                 style={{
@@ -96,194 +101,232 @@ export default function ProductCategoryPage({
               >
                 ← All Products
               </TransitionLink>
-              <div
+              <h1
                 style={{
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: "8px",
-                  padding: "6px 16px",
-                  background: `${color}33`,
-                  border: `1px solid ${color}66`,
-                  borderRadius: "50px",
-                  marginBottom: "20px",
                   fontFamily: "var(--font-heading)",
-                  fontWeight: 700,
-                  fontSize: "0.72rem",
-                  letterSpacing: "0.1em",
-                  textTransform: "uppercase",
-                  color: "rgba(255,255,255,0.9)",
+                  fontWeight: 500,
+                  fontSize: "clamp(2rem, 5.5vw, 4rem)",
+                  lineHeight: 1.15,
+                  color: "white",
+                  marginBottom: "24px",
+                  letterSpacing: "-0.025em",
+                  textShadow: "0 2px 10px rgba(0,0,0,0.15)",
                 }}
               >
-                {renderIcon(14)} Product Category
-              </div>
-              <h1 className="heading-xl" style={{ color: "white", marginBottom: "12px" }}>
                 {title}
               </h1>
+
               <p
                 style={{
-                  fontFamily: "var(--font-heading)",
-                  fontWeight: 600,
-                  fontSize: "1.15rem",
-                  color: colors.greenLight,
-                  marginBottom: "16px",
+                  color: "rgba(255, 255, 255, 0.85)",
+                  fontSize: "1.05rem",
+                  lineHeight: 1.6,
+                  maxWidth: "480px",
+                  marginBottom: "32px",
+                  fontFamily: "var(--font-body)",
                 }}
               >
-                {tagline}
-              </p>
-              <p className="body-lg" style={{ color: "rgba(255,255,255,0.75)", maxWidth: "520px", marginBottom: "32px" }}>
                 {description}
               </p>
-              {/* ── Compact CTA buttons ── */}
-              <div style={{ display: "flex", gap: "10px", flexWrap: "wrap", alignItems: "center" }}>
-                <TransitionLink href="/contact" className="btn-primary-sm">
-                  Get a Quote <ArrowRight size={14} />
+
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "12px",
+                }}
+              >
+                <TransitionLink
+                  href="/contact"
+                  className="hero-btn-pill"
+                >
+                  Get a Quote
                 </TransitionLink>
-                <TransitionLink href="/b2b" className="btn-outline-sm">
-                  B2B Inquiry
+                <TransitionLink
+                  href="/products"
+                  className="hero-btn-circle"
+                >
+                  <ArrowRight size={20} style={{ transform: "rotate(-45deg)" }} />
                 </TransitionLink>
               </div>
             </div>
 
-            {/* Hero image */}
-            <div
-              style={{
-                background: gradient,
-                borderRadius: "32px",
-                padding: "40px",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                minWidth: "280px",
-                minHeight: "280px",
-              }}
-              className="cat-hero-img"
-            >
-              {img ? (
-                <Image
-                  src={img}
-                  alt={title}
-                  width={220}
-                  height={220}
-                  style={{ objectFit: "contain", filter: "drop-shadow(0 16px 32px rgba(0,0,0,0.15))", animation: "float 6s ease-in-out infinite" }}
-                />
-              ) : (
-                <div style={{ display: "flex", alignItems: "center", justifyContent: "center", color: "var(--gray-800)", animation: "float 6s ease-in-out infinite" }}>
-                  {renderIcon(120)}
-                </div>
-              )}
-            </div>
+            {/* Right — Empty to let background image show */}
+            <div className="hidden-mobile" />
           </div>
-        </div>
-
-        <div style={{ position: "absolute", bottom: -2, left: 0, right: 0 }}>
-          <svg viewBox="0 0 1440 60" fill="none"><path d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z" fill="var(--off-white)" /></svg>
         </div>
       </section>
 
-      {/* About Section */}
-      <section className="section" style={{ background: "var(--off-white)" }}>
+      {/* Tabbed About Section */}
+      <section className="section" style={{ background: "var(--warm-white)" }}>
         <div className="container">
           <div
+            className="card reveal"
             style={{
+              background: "white",
+              borderRadius: "24px",
+              padding: "48px",
+              boxShadow: "0 12px 40px rgba(0,0,0,0.04)",
               display: "grid",
-              gridTemplateColumns: "2fr 1fr",
-              gap: "48px",
-              alignItems: "start",
+              gridTemplateColumns: "1fr 1.2fr",
+              gap: "64px",
+              alignItems: "stretch",
             }}
-            className="about-grid"
           >
-            <div>
-              <h2 className="heading-md reveal" style={{ marginBottom: "16px" }}>
-                About Our {title}
-              </h2>
-              <div className="divider" />
-              <p className="body-md reveal" style={{ marginBottom: "20px" }}>
-                {fullDescription}
-              </p>
-              <h3
-                className="reveal"
+            {/* Left Column */}
+            <div style={{ display: "flex", flexDirection: "column" }}>
+              <span style={{ fontFamily: "var(--font-heading)", fontSize: "0.9rem", color: "#6B7280", marginBottom: "12px", fontWeight: 500 }}>
+                ({title})
+              </span>
+              <h2
                 style={{
                   fontFamily: "var(--font-heading)",
-                  fontWeight: 700,
-                  fontSize: "1rem",
-                  color: "var(--gray-800)",
-                  marginTop: "24px",
-                  marginBottom: "16px",
+                  fontWeight: 500,
+                  fontSize: "clamp(2rem, 3vw, 2.75rem)",
+                  color: "#111827",
+                  lineHeight: 1.1,
+                  marginBottom: "20px",
+                  letterSpacing: "-0.03em"
                 }}
               >
-                What We Offer
-              </h3>
-              <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
-                {keyPoints.map((point, i) => (
-                  <div
-                    key={point}
-                    className={`reveal reveal-delay-${Math.min(i + 1, 6)}`}
-                    style={{ display: "flex", alignItems: "center", gap: "12px" }}
+                {tagline}
+              </h2>
+              <p
+                style={{
+                  color: "#4B5563",
+                  fontSize: "1rem",
+                  lineHeight: 1.6,
+                  marginBottom: "40px",
+                }}
+              >
+                {fullDescription}
+              </p>
+
+              {/* Tabs */}
+              <div style={{ display: "flex", flexDirection: "column" }}>
+                {products.map((product, idx) => (
+                  <button
+                    key={product.name}
+                    onClick={() => setActiveTab(idx)}
+                    style={{
+                      textAlign: "left",
+                      padding: "16px 0",
+                      background: "transparent",
+                      border: "none",
+                      borderBottom: "1px solid var(--gray-200)",
+                      cursor: "pointer",
+                      fontFamily: "var(--font-heading)",
+                      fontSize: "1.2rem",
+                      fontWeight: activeTab === idx ? 600 : 400,
+                      color: activeTab === idx ? "#111827" : "var(--gray-400)",
+                      transition: "all 0.2s ease",
+                    }}
                   >
-                    <CheckCircle size={18} color={color} style={{ flexShrink: 0 }} />
-                    <span style={{ fontSize: "0.95rem", color: "var(--gray-600)" }}>{point}</span>
-                  </div>
+                    {product.name}
+                  </button>
                 ))}
               </div>
             </div>
 
-            {/* Sidebar */}
-            <div>
-              <div
-                className="card reveal"
-                style={{
-                  padding: "32px",
-                  background: `linear-gradient(135deg, ${color}08, ${color}15)`,
-                  border: `1px solid ${color}25`,
-                }}
-              >
-                <h3
+            {/* Right Column */}
+            <div style={{ display: "flex", flexDirection: "column", position: "relative" }}>
+              {products.map((product, idx) => (
+                <div
+                  key={product.name}
                   style={{
-                    fontFamily: "var(--font-heading)",
-                    fontWeight: 700,
-                    fontSize: "1.1rem",
-                    color: "var(--gray-800)",
-                    marginBottom: "20px",
+                    opacity: activeTab === idx ? 1 : 0,
+                    pointerEvents: activeTab === idx ? "auto" : "none",
+                    position: activeTab === idx ? "relative" : "absolute",
+                    top: 0,
+                    left: 0,
+                    width: "100%",
+                    height: activeTab === idx ? "auto" : "100%",
+                    transition: "opacity 0.3s ease-in-out",
+                    display: "flex",
+                    flexDirection: "column"
                   }}
                 >
-                  Need Bulk Supply?
-                </h3>
-                <p style={{ fontSize: "0.88rem", color: "var(--gray-600)", lineHeight: 1.7, marginBottom: "24px" }}>
-                  We offer competitive pricing for distributors and institutional buyers. Contact us for customized solutions and volume discounts.
-                </p>
-                <TransitionLink href="/contact" className="btn-blue" style={{ background: color, display: "flex", justifyContent: "center", width: "100%" }}>
-                  <Phone size={16} /> Contact Us
-                </TransitionLink>
-                <div style={{ marginTop: "20px", padding: "16px", background: "rgba(255,255,255,0.7)", borderRadius: "12px" }}>
-                  {[
-                    "Bulk packaging available",
-                    "Custom formulations",
-                    "Competitive pricing",
-                    "Reliable delivery",
-                  ].map((item) => (
-                    <div key={item} style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "8px", fontSize: "0.82rem", color: "var(--gray-600)" }}>
-                      <CheckCircle size={13} color={color} />
-                      {item}
-                    </div>
-                  ))}
+                  <div
+                    style={{
+                      width: "100%",
+                      height: "360px",
+                      position: "relative",
+                      borderRadius: "16px",
+                      overflow: "hidden",
+                      marginBottom: "24px",
+                      background: "var(--gray-100)", // fallback
+                    }}
+                  >
+                    {product.detailsImage && (
+                      <Image
+                        src={product.detailsImage}
+                        alt={product.name}
+                        fill
+                        style={{ objectFit: "cover" }}
+                      />
+                    )}
+                  </div>
+                  <h3
+                    style={{
+                      fontFamily: "var(--font-heading)",
+                      fontWeight: 500,
+                      fontSize: "1.75rem",
+                      color: "#111827",
+                      marginBottom: "12px",
+                      letterSpacing: "-0.02em"
+                    }}
+                  >
+                    {product.name}
+                  </h3>
+                  <p
+                    style={{
+                      color: "#4B5563",
+                      fontSize: "0.95rem",
+                      lineHeight: 1.6,
+                      marginBottom: "24px",
+                    }}
+                  >
+                    {product.description}
+                  </p>
+                  <div>
+                    <TransitionLink
+                      href="/contact"
+                      className="btn-dark"
+                      style={{
+                        display: "inline-flex",
+                        alignItems: "center",
+                        padding: "10px 24px",
+                        background: "#000000",
+                        color: "white",
+                        borderRadius: "50px",
+                        fontSize: "0.85rem",
+                        fontFamily: "var(--font-heading)",
+                        fontWeight: 500,
+                        textDecoration: "none",
+                        transition: "opacity 0.2s ease",
+                      }}
+                    >
+                      Contact Us
+                    </TransitionLink>
+                  </div>
                 </div>
-              </div>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
       {/* Products Grid — premium image cards */}
-      <section className="section" style={{ background: "white" }}>
+      <section className="section" style={{ background: "var(--warm-white)" }}>
         <div className="container">
           <div style={{ textAlign: "center", marginBottom: "56px" }}>
             <span className="section-label reveal" style={{ background: `${color}12`, color: color }}>
               Product Range
             </span>
-            <h2 className="heading-lg reveal" style={{ color: "var(--gray-800)", marginBottom: "12px" }}>
+            <h2 className="heading-lg reveal" style={{ color: "#1F2937", marginBottom: "12px" }}>
               {title}
             </h2>
-            <p className="body-md reveal" style={{ color: "var(--gray-600)", maxWidth: "500px", margin: "0 auto" }}>
+            <p className="body-md reveal" style={{ color: "#4B5563", maxWidth: "500px", margin: "0 auto" }}>
               Explore our carefully formulated range designed for performance, safety, and sustainability.
             </p>
           </div>
@@ -294,13 +337,13 @@ export default function ProductCategoryPage({
               className="bento-card bento-card-intro reveal reveal-delay-1"
               style={{
                 position: "relative",
-                borderRadius: "24px",
+                borderRadius: "12px",
                 overflow: "hidden",
                 minHeight: "440px",
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "center",
-                padding: "48px",
+                padding: "40px",
                 boxShadow: "0 12px 32px rgba(0,0,0,0.1)",
                 background: color,
                 color: "white"
@@ -323,16 +366,16 @@ export default function ProductCategoryPage({
             {products.map((product, i) => (
               <div
                 key={product.name}
-                className={`bento-card bento-card-product reveal reveal-delay-${((i + 1) % 3) + 1}`}
+                className={`bento-card bento-card-product reveal reveal-delay-${i + 2}`}
                 style={{
                   position: "relative",
-                  borderRadius: "24px",
+                  borderRadius: "12px",
                   overflow: "hidden",
                   minHeight: "440px",
                   display: "flex",
                   flexDirection: "column",
                   justifyContent: "flex-end",
-                  padding: "36px",
+                  padding: "24px",
                   boxShadow: "0 12px 32px rgba(0,0,0,0.15)",
                   border: `1px solid ${color}20`,
                   background: product.img ? "var(--ds-color-primary)" : gradient,
@@ -356,7 +399,7 @@ export default function ProductCategoryPage({
                 )}
 
                 {product.badge && (
-                  <div style={{ position: "absolute", top: "24px", left: "24px", zIndex: 2, background: color, color: "white", padding: "6px 16px", borderRadius: "50px", fontSize: "0.75rem", fontFamily: "var(--font-heading)", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", boxShadow: `0 4px 16px ${color}60` }}>
+                  <div style={{ position: "absolute", top: "24px", left: "24px", zIndex: 2, background: color, color: "white", padding: "6px 16px", borderRadius: "50px", fontSize: "0.75rem", fontFamily: "var(--font-heading)", fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.1em", boxShadow: `0 4px 16px ${color}60` }}>
                     {product.badge}
                   </div>
                 )}
@@ -366,17 +409,17 @@ export default function ProductCategoryPage({
                     style={{
                       fontFamily: "var(--font-heading)",
                       fontWeight: 700,
-                      fontSize: "clamp(1.6rem, 2.2vw, 2rem)",
-                      lineHeight: 1.15,
-                      marginBottom: "12px",
-                      textShadow: product.img ? "0 2px 10px rgba(0,0,0,0.5)" : "none",
-                      color: product.img ? "white" : "var(--gray-800)",
+                      fontSize: "1.45rem",
+                      lineHeight: 1.2,
+                      marginBottom: "6px",
+                      textShadow: product.img ? "0 2px 10px rgba(0,0,0,0.4)" : "none",
+                      color: product.img ? "white" : "#1F2937",
                     }}
                   >
                     {product.name}
                   </h3>
 
-                  <p style={{ fontSize: "0.95rem", color: product.img ? "rgba(255,255,255,0.85)" : "var(--gray-700)", lineHeight: 1.6, marginBottom: "24px", maxWidth: "95%" }}>
+                  <p style={{ fontSize: "0.95rem", color: product.img ? "rgba(255,255,255,0.85)" : "#374151", lineHeight: 1.45, marginBottom: "16px", maxWidth: "95%", textShadow: product.img ? "0 1px 4px rgba(0,0,0,0.4)" : "none" }}>
                     {product.description}
                   </p>
 
@@ -393,7 +436,7 @@ export default function ProductCategoryPage({
                         padding: "12px 28px",
                         borderRadius: "50px",
                         fontFamily: "var(--font-heading)",
-                        fontWeight: 700,
+                        fontWeight: 500,
                         fontSize: "0.95rem",
                         textDecoration: "none",
                         boxShadow: `0 8px 24px rgba(0,0,0,0.15)`,
@@ -406,78 +449,32 @@ export default function ProductCategoryPage({
                 </div>
               </div>
             ))}
-
-            {/* 3. Black Contact Card (Bottom Right) */}
-            <div
-              className="bento-card bento-card-contact reveal reveal-delay-3"
-              style={{
-                position: "relative",
-                borderRadius: "24px",
-                overflow: "hidden",
-                minHeight: "440px",
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "space-between",
-                padding: "48px",
-                boxShadow: "0 12px 32px rgba(3, 103, 166, 0.2)",
-                background: "var(--gradient-hero)",
-                color: "white"
-              }}
-            >
-              <div>
-                <h3 style={{ fontFamily: "var(--font-heading)", fontSize: "clamp(1.8rem, 2.5vw, 2.2rem)", fontWeight: 600, marginBottom: "16px", lineHeight: 1.2, letterSpacing: "-0.01em" }}>
-                  Ordering goods is like sending money in just minutes.
-                </h3>
-                <p style={{ fontSize: "1rem", lineHeight: 1.6, opacity: 0.7, maxWidth: "95%" }}>
-                  Empowering your logistics decisions to independent ventures for bulk goods.
-                </p>
-              </div>
-
-              <div style={{ marginTop: "32px" }}>
-                <TransitionLink
-                  href="/contact"
-                  className="bento-btn"
-                  style={{
-                    display: "inline-flex",
-                    alignItems: "center",
-                    background: color,
-                    color: "white",
-                    padding: "12px 32px",
-                    borderRadius: "50px",
-                    fontFamily: "var(--font-heading)",
-                    fontWeight: 700,
-                    fontSize: "0.95rem",
-                    textDecoration: "none",
-                    boxShadow: `0 8px 24px rgba(0,0,0,0.2)`,
-                    transition: "all 0.3s ease",
-                  }}
-                >
-                  Contact Us
-                </TransitionLink>
-              </div>
-            </div>
           </div>
 
           <style>{`
             .bento-grid {
               display: grid;
               grid-template-columns: repeat(6, 1fr);
-              gap: 24px;
+              gap: 16px;
             }
             .bento-card {
-              cursor: default;
-              transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s ease;
+              /* transition: box-shadow .25s ease; removed to allow .reveal to work properly */
             }
-            .bento-card:hover {
-              transform: translateY(-6px);
-              box-shadow: 0 20px 48px rgba(0,0,0,0.25) !important;
-            }
-            .bento-card:hover .bento-bg-img {
-              transform: scale(1.08) !important;
+            // .bento-card:hover {
+            //   transform: translateY(-6px);
+            //   box-shadow: 0 20px 48px rgba(0,0,0,0.25) !important;
+            // }
+            // .bento-card:hover .bento-bg-img {
+            //   transform: scale(1.08) !important;
             }
             .bento-btn:hover {
               transform: translateY(-2px);
               filter: brightness(1.05);
+            }
+            
+            .bento-bg-img{
+            object-fit:cover;
+            inset:0;
             }
 
             /* 5 ITEMS: Intro + 3 Products + Contact */

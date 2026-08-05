@@ -9,19 +9,23 @@ export const metadata = {
 const products = [
   {
     name: "White Phenyl",
-    badge: "Classic",
+    description: "White phenyl for general floor and surface cleaning",
+    detailsImage: "/phenyl/landing/phenyl-1.jpg"
   },
   {
     name: "Black Phenyl",
-    badge: "Industrial",
+    description: "Black phenyl for industrial and heavy-duty use",
+    detailsImage: "/phenyl/landing/phenyl-2.jpg"
   },
   {
     name: "Disinfectant Concentrate",
-    badge: "Hospital Grade",
+    description: "Disinfectant concentrates with hospital-grade germ kill",
+    detailsImage: "/phenyl/landing/phenyl-3.jpg"
   },
   {
     name: "Bulk Cleaning Solution",
-    badge: "Bulk Supply",
+    description: "Bulk cleaning solutions for large-scale operations",
+    detailsImage: "/phenyl/landing/phenyl-4.jpg"
   },
 ];
 
@@ -31,18 +35,14 @@ export default function PhenyldisinfectantsPage() {
       title="Phenyl & Disinfectants"
       tagline="Industrial-grade protection."
       description="High-quality phenyl and disinfectant products for large-scale cleaning and disinfection in hospitals, schools, offices, and public facilities."
-      fullDescription="For large-scale cleaning and disinfection, Kleanja offers high-quality phenyl and disinfectant products. These are widely used in institutions such as hospitals, schools, offices, and public facilities. Our phenyl products are available in different variants, including white and black phenyl, each designed for specific cleaning requirements. Disinfectant solutions are formulated to kill germs and maintain hygiene in high-traffic areas. We also provide concentrated disinfectants for bulk users, enabling cost-effective cleaning solutions for large spaces."
+      fullDescription="Kleanja offers high-quality white and black phenyl variants alongside germ-killing disinfectant solutions. These products are specially designed for large-scale institutional cleaning in high-traffic environments like hospitals, schools, offices, and public facilities. For bulk users managing large spaces, Kleanja also provides concentrated formulas that offer highly cost-effective sanitization."
       icon="🔬"
       color={colors.blueDark}
       gradient={gradients.blueGray}
       img={null}
+      heroImage="/products/phenyl.jpg"
       products={products}
-      keyPoints={[
-        "White phenyl for general floor and surface cleaning",
-        "Black phenyl for industrial and heavy-duty use",
-        "Disinfectant concentrates with hospital-grade germ kill",
-        "Bulk cleaning solutions for large-scale operations",
-      ]}
+      keyPoints={[]}
     />
   );
 }

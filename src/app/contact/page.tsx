@@ -18,7 +18,7 @@ export default function ContactPage() {
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => entries.forEach((e) => e.isIntersecting && e.target.classList.add("visible")),
-      { threshold: 0.1 }
+      { threshold: 0.08, rootMargin: '0px 0px -50px 0px' }
     );
     document.querySelectorAll(".reveal, .reveal-left, .reveal-right").forEach((el) => observer.observe(el));
     return () => observer.disconnect();
@@ -62,12 +62,12 @@ export default function ContactPage() {
           </p>
         </div>
         <div style={{ position: "absolute", bottom: -2, left: 0, right: 0 }}>
-          <svg viewBox="0 0 1440 60" fill="none"><path d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z" fill="var(--off-white)" /></svg>
+          <svg viewBox="0 0 1440 60" fill="none"><path d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z" fill="var(--warm-white)" /></svg>
         </div>
       </section>
 
       {/* Contact Section */}
-      <section className="section" style={{ background: "var(--off-white)" }}>
+      <section className="section" style={{ background: "var(--warm-white)" }}>
         <div className="container">
           <div
             style={{ display: "grid", gridTemplateColumns: "2fr 3fr", gap: "60px", alignItems: "start" }}

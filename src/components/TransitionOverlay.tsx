@@ -126,15 +126,12 @@ export default function TransitionOverlay() {
             }}
           >
             <Image
-              src="/logo.jpeg"
+              src="/klenja_logo_without_text_transparent.png"
               alt="logo"
               width={220}
               height={70}
               style={{
-                borderRadius:14,
-                background:"white",
-                padding:12,
-                boxShadow:"0 20px 60px rgba(0,0,0,.25)"
+                // No background for logo
               }}
             />
           </motion.div>
