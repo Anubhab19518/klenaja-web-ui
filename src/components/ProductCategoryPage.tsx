@@ -84,8 +84,7 @@ export default function ProductCategoryPage({
             }}
             className="hero-grid"
           >
-            {/* Left — Text */}
-            <div className="home-hero-copy" style={{ textAlign: "left" }}>
+            <div className="home-hero-copy">
               <TransitionLink
                 href="/products"
                 style={{
@@ -161,12 +160,8 @@ export default function ProductCategoryPage({
       <section className="section" style={{ background: "var(--warm-white)" }}>
         <div className="container">
           <div
-            className="card reveal"
+            className="reveal about-grid"
             style={{
-              background: "white",
-              borderRadius: "24px",
-              padding: "48px",
-              boxShadow: "0 12px 40px rgba(0,0,0,0.04)",
               display: "grid",
               gridTemplateColumns: "1fr 1.2fr",
               gap: "64px",
@@ -344,7 +339,6 @@ export default function ProductCategoryPage({
                 flexDirection: "column",
                 justifyContent: "center",
                 padding: "40px",
-                boxShadow: "0 12px 32px rgba(0,0,0,0.1)",
                 background: color,
                 color: "white"
               }}
@@ -376,7 +370,6 @@ export default function ProductCategoryPage({
                   flexDirection: "column",
                   justifyContent: "flex-end",
                   padding: "24px",
-                  boxShadow: "0 12px 32px rgba(0,0,0,0.15)",
                   border: `1px solid ${color}20`,
                   background: product.img ? "var(--ds-color-primary)" : gradient,
                 }}
@@ -542,13 +535,33 @@ export default function ProductCategoryPage({
       </section>
 
       <style>{`
+        .home-hero-copy {
+          text-align: left;
+        }
         @media (max-width: 1024px) {
+          .hero-grid { grid-template-columns: 1fr !important; }
+          .hero-grid > div:last-child { display: none; }
           .cat-hero-grid { grid-template-columns: 1fr !important; }
           .cat-hero-img { display: none !important; }
           .about-grid { grid-template-columns: 1fr !important; }
         }
         @media (max-width: 640px) {
           .products-grid { grid-template-columns: 1fr !important; }
+          .home-hero {
+            min-height: 100svh !important;
+            padding-top: 106px !important;
+            padding-bottom: 76px !important;
+          }
+          .home-hero-copy {
+            text-align: center;
+          }
+          .home-hero-copy > p {
+            margin-left: auto !important;
+            margin-right: auto !important;
+          }
+          .home-hero-copy > div {
+            justify-content: center !important;
+          }
         }
       `}</style>
     </>

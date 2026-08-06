@@ -13,7 +13,7 @@ const geoUrl = "/maps/india.json";
 
 // Must precisely match the projectionConfig inside ComposableMap
 const projection = geoMercator()
-  .scale(1100)
+  .scale(1500)
   .center([82, 23.2])
   .translate([400, 300]);
 
@@ -46,9 +46,20 @@ const cities = [
   { name: "Ranchi", coordinates: [85.3096, 23.3441] as [number, number] },
 ];
 
-function CurvedLine({ from, to, delay = 0 }: { from: [number, number], to: [number, number], delay: number }) {
-  const start = projection(from);
-  const end = projection(to);
+function CurvedLine({
+  from,
+  to,
+  delay = 0,
+  projection: localProjection,
+}: {
+  from: [number, number];
+  to: [number, number];
+  delay: number;
+  projection?: any;
+}) {
+  const activeProj = localProjection || projection;
+  const start = activeProj(from);
+  const end = activeProj(to);
   if (!start || !end) return null;
 
   const dx = end[0] - start[0];
@@ -86,17 +97,24 @@ function CurvedLine({ from, to, delay = 0 }: { from: [number, number], to: [numb
 export default function IndiaDistributionMap({
   large = false,
   mapHeight = large ? "clamp(360px, 38vw, 500px)" : "200px",
+  mapScale = 1100,
 }: {
   large?: boolean;
   mapHeight?: string;
+  mapScale?: number;
 }) {
+  const activeProjection = geoMercator()
+    .scale(mapScale)
+    .center([82, 23.2])
+    .translate([400, 300]);
+
   return (
     <div className="relative w-full flex flex-col justify-center items-center">
       <div style={{ position: "relative", width: "100%", height: mapHeight }}>
         <ComposableMap
           projection="geoMercator"
           projectionConfig={{
-            scale: 1100,
+            scale: mapScale,
             center: [82, 23.2],
           }}
           width={800}
@@ -135,6 +153,7 @@ export default function IndiaDistributionMap({
               from={route.from as [number, number]}
               to={route.to as [number, number]}
               delay={index * 0.4}
+              projection={activeProjection}
             />
           ))}
 

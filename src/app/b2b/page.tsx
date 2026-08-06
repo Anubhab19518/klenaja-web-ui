@@ -5,6 +5,9 @@ import { colors } from "@/design-system";
 
 import {
   ArrowRight,
+  ArrowUpRight,
+  BadgeCheck,
+  Hourglass,
   CheckCircle,
   Building2,
   Hospital,
@@ -54,72 +57,190 @@ export default function B2BPage() {
   return (
     <>
       {/* Hero */}
-      <section className="page-hero">
-        <div className="hero-blob" style={{ width: "500px", height: "500px", top: "-150px", right: "-150px", background: "var(--blue-light)" }} />
-        <div className="hero-blob" style={{ width: "350px", height: "350px", bottom: "-100px", left: "5%", background: "var(--green-dark)" }} />
+      <section
+        id="b2b-hero-section"
+        style={{
+          background: "var(--warm-white)",
+          paddingTop: "140px",
+          paddingBottom: "0px",
+          position: "relative",
+          overflow: "hidden",
+        }}
+      >
         <div className="container" style={{ position: "relative", zIndex: 2 }}>
+          {/* Top Label */}
           <div
-            style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "60px", alignItems: "center" }}
-            className="b2b-hero-grid"
+            style={{
+              textAlign: "center",
+              marginBottom: "16px",
+              fontFamily: "var(--font-heading)",
+              fontSize: "0.95rem",
+              fontWeight: 500,
+              color: "#52525b",
+              letterSpacing: "-0.01em",
+            }}
           >
-            <div>
-              <span className="section-label" style={{ background: "rgba(255,255,255,0.1)", color: "rgba(255,255,255,0.9)" }}>
-                B2B Solutions
-              </span>
-              <h1 className="heading-xl" style={{ color: "white", marginBottom: "20px" }}>
-                Scale Your Cleaning Operations with Kleanja
-              </h1>
-              <p className="body-lg" style={{ color: "rgba(255,255,255,0.75)", marginBottom: "32px" }}>
-                Bulk supply, customized formulations, and long-term partnerships designed for businesses, institutions, and distributors across India.
-              </p>
-              <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
-                <TransitionLink href="/contact" className="btn-primary">
-                  Become a Partner <ArrowRight size={16} />
-                </TransitionLink>
-                <TransitionLink href="#industries" className="btn-outline">
-                  Industries We Serve
-                </TransitionLink>
-              </div>
-            </div>
+            For Commercial & B2B Partners
+          </div>
 
-            {/* Stats panel */}
-            <div
+          {/* Main Headline with inline capsule pill */}
+          <h1
+            style={{
+              fontFamily: "var(--font-heading)",
+              fontWeight: 500,
+              fontSize: "clamp(2.2rem, 5.2vw, 4rem)",
+              color: "#0F172A",
+              lineHeight: 1.25,
+              letterSpacing: "-0.035em",
+              textAlign: "center",
+              maxWidth: "1000px",
+              margin: "0 auto 36px",
+            }}
+          >
+            Reduce facility cleaning costs by{" "}
+            <span
               style={{
-                background: "rgba(255,255,255,0.07)",
-                backdropFilter: "blur(20px)",
-                border: "1px solid rgba(255,255,255,0.12)",
-                borderRadius: "24px",
-                padding: "40px",
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "10px",
+                background: "#3b59e8",
+                color: "#ffffff",
+                padding: "4px 22px 4px 6px",
+                borderRadius: "9999px",
+                verticalAlign: "middle",
+                margin: "0 6px 4px 6px",
+                boxShadow: "0 6px 20px rgba(59, 89, 232, 0.25)",
+                lineHeight: 1,
               }}
             >
-              <p style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: "0.8rem", letterSpacing: "0.1em", color: "rgba(255,255,255,0.6)", textTransform: "uppercase", marginBottom: "24px" }}>
-                Our B2B Capabilities
-              </p>
-              {[
-                { label: "Product Categories", value: "6+" },
-                { label: "Pack Sizes Available", value: "5L – 200L" },
-                { label: "Industries Served", value: "6+" },
-                { label: "Supply Model", value: "Pan India" },
-              ].map((item) => (
-                <div
-                  key={item.label}
-                  style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                    padding: "14px 0",
-                    borderBottom: "1px solid rgba(255,255,255,0.08)",
-                  }}
-                >
-                  <span style={{ fontSize: "0.9rem", color: "rgba(255,255,255,0.7)", fontFamily: "var(--font-heading)" }}>{item.label}</span>
-                  <span style={{ fontFamily: "var(--font-heading)", fontWeight: 800, fontSize: "1.1rem", color: colors.greenLight }}>{item.value}</span>
-                </div>
-              ))}
-            </div>
+              <span
+                style={{
+                  width: "40px",
+                  height: "40px",
+                  borderRadius: "50%",
+                  background: "#ffffff",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  color: "#3b59e8",
+                  flexShrink: 0,
+                }}
+              >
+                <Hourglass size={20} strokeWidth={2.5} />
+              </span>
+              <span
+                style={{
+                  fontSize: "0.95em",
+                  fontWeight: 700,
+                  letterSpacing: "-0.02em",
+                  color: "#ffffff",
+                }}
+              >
+                40%
+              </span>
+            </span>{" "}
+            to scale your operations
+          </h1>
+
+          {/* CTA Buttons */}
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              gap: "14px",
+              flexWrap: "wrap",
+              marginBottom: "24px",
+            }}
+          >
+            <TransitionLink
+              href="/contact"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "8px",
+                background: "#111115",
+                color: "#ffffff",
+                padding: "14px 28px",
+                borderRadius: "9999px",
+                fontWeight: 500,
+                fontSize: "0.95rem",
+                textDecoration: "none",
+                transition: "all 0.2s ease-in-out",
+                boxShadow: "0 4px 14px rgba(0, 0, 0, 0.12)",
+              }}
+              className="hover:scale-[1.02] active:scale-[0.98]"
+            >
+              Become a Partner <ArrowUpRight size={18} />
+            </TransitionLink>
+            <TransitionLink
+              href="#industries"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "8px",
+                background: "#ffffff",
+                color: "#18181b",
+                border: "1px solid #e4e4e7",
+                padding: "14px 28px",
+                borderRadius: "9999px",
+                fontWeight: 500,
+                fontSize: "0.95rem",
+                textDecoration: "none",
+                transition: "all 0.2s ease-in-out",
+              }}
+              className="hover:bg-gray-50 hover:border-gray-300 hover:scale-[1.02] active:scale-[0.98]"
+            >
+              Learn more
+            </TransitionLink>
           </div>
-        </div>
-        <div style={{ position: "absolute", bottom: -2, left: 0, right: 0 }}>
-          <svg viewBox="0 0 1440 60" fill="none"><path d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z" fill="var(--warm-white)" /></svg>
+
+          {/* Trust Subtext */}
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "8px",
+              marginBottom: "48px",
+              color: "#52525b",
+              fontSize: "0.9rem",
+              fontWeight: 450,
+            }}
+          >
+            <BadgeCheck size={18} className="text-[#18181b]" />
+            <span>
+              Helping <strong style={{ color: "#18181b", fontWeight: 700 }}>500+</strong> commercial clients & institutions scale operations
+            </span>
+          </div>
+
+          {/* Hero Showcase Card */}
+          <div
+            style={{
+              width: "100%",
+              maxWidth: "1140px",
+              margin: "0 auto",
+              borderRadius: "28px 28px 0 0",
+              overflow: "hidden",
+              boxShadow: "0 -10px 40px -10px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(0, 0, 0, 0.05)",
+              background: "#e2e8f0",
+              position: "relative",
+              height: "280px",
+              maxHeight: "280px",
+            }}
+          >
+            <img
+              src="/b2b-hero.png"
+              alt="Kleanja B2B Commercial Operations"
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                objectPosition: "center",
+                display: "block",
+              }}
+            />
+          </div>
         </div>
       </section>
 
@@ -127,10 +248,26 @@ export default function B2BPage() {
       <section className="section" style={{ background: "var(--warm-white)" }}>
         <div className="container">
           <div style={{ textAlign: "center", marginBottom: "48px" }}>
-            <span className="section-label reveal">Our Capabilities</span>
-            <h2 className="heading-lg reveal" style={{ color: "var(--gray-800)" }}>
+            <h2 className="heading-lg reveal" style={{ color: "var(--gray-800)", marginBottom: "20px" }}>
               Built for Business Scale
             </h2>
+            <p
+              className="reveal"
+              style={{
+                color: "#111827",
+                fontSize: "clamp(1.05rem, 2vw, 1.25rem)",
+                lineHeight: 1.6,
+                maxWidth: "680px",
+                margin: "0 auto 32px",
+                fontFamily: "var(--font-body)",
+              }}
+            >
+              <strong>From hospitals to hotels — </strong>
+              <span style={{ opacity: 0.45, color: "#111827" }}>
+                Kleanja delivers hygiene solutions
+              </span>
+              <strong> purpose-built for each environment.</strong>
+            </p>
           </div>
           <div
             style={{ display: "grid", gridTemplateColumns: "repeat(12, 1fr)", gap: "16px" }}
@@ -186,139 +323,91 @@ export default function B2BPage() {
         </div>
       </section>
 
-      {/* Industries — Premium Photo Cards */}
-      <section id="industries" style={{ background: "var(--gray-800)", padding: "96px 0", scrollMarginTop: "80px", position: "relative", overflow: "hidden" }}>
+      {/* Industries — Curved 3D Gallery (Mockup Style) */}
+      <section id="industries" style={{ background: "var(--warm-white)", padding: "100px 0 60px", scrollMarginTop: "80px", position: "relative", overflow: "hidden" }}>
         {/* Subtle pattern overlay */}
-        <div style={{ position: "absolute", inset: 0, backgroundImage: "radial-gradient(circle at 20% 50%, rgba(26,107,160,0.12) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(61,155,58,0.1) 0%, transparent 50%)", pointerEvents: "none" }} />
+        <div style={{ position: "absolute", inset: 0, backgroundImage: "radial-gradient(circle at 20% 50%, rgba(26,107,160,0.04) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(61,155,58,0.03) 0%, transparent 50%)", pointerEvents: "none" }} />
 
         <div className="container" style={{ position: "relative", zIndex: 2 }}>
           {/* Heading */}
-          <div style={{ textAlign: "center", marginBottom: "56px" }}>
-            <span
-              className="section-label reveal"
+          <div style={{ textAlign: "center", marginBottom: "8px" }}>
+            <h2
+              className="reveal"
               style={{
-                background: "rgba(255,255,255,0.08)",
-                color: "rgba(255,255,255,0.7)",
-                border: "1px solid rgba(255,255,255,0.12)",
+                fontFamily: "var(--font-heading)",
+                fontWeight: 700,
+                fontSize: "clamp(2rem, 5.5vw, 3rem)",
+                color: "#111827",
+                lineHeight: 1.15,
+                letterSpacing: "-0.035em",
+                marginTop: "16px",
+                marginBottom: "20px"
               }}
             >
-              Industries We Serve
-            </span>
-            <h2 className="heading-lg reveal" style={{ color: "white", marginBottom: "14px" }}>
-              Trusted across every sector
+              Trusted Across Every Sector
             </h2>
-            <p className="body-md reveal" style={{ color: "rgba(255,255,255,0.55)", maxWidth: "500px", margin: "0 auto" }}>
-              From hospitals to hotels — Kleanja delivers hygiene solutions purpose-built for each environment.
+            <p
+              className="reveal"
+              style={{
+                color: "#111827",
+                fontSize: "clamp(1.05rem, 2vw, 1.25rem)",
+                lineHeight: 1.6,
+                maxWidth: "680px",
+                margin: "0 auto 32px",
+                fontFamily: "var(--font-body)",
+              }}
+            >
+              <strong>From hospitals to hotels — </strong>
+              <span style={{ opacity: 0.45, color: "#111827" }}>
+                Kleanja delivers hygiene solutions
+              </span>
+              <strong> purpose-built for each environment.</strong>
             </p>
-          </div>
-
-          {/* 3 × 2 Photo Card Grid */}
-          <div
-            style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "16px" }}
-            className="industries-photo-grid"
-          >
-            {industries.map((ind, i) => (
-              <div
-                key={ind.name}
-                className={`industry-photo-card reveal reveal-delay-${i + 1}`}
+            <div className="reveal" style={{ display: "flex", justifyContent: "center" }}>
+              <TransitionLink
+                href="/contact"
+                className="btn-primary b2b-sectors-btn"
                 style={{
-                  position: "relative",
-                  borderRadius: "12px",
-                  overflow: "hidden",
-                  height: "340px",
-                  cursor: "default",
-                  boxShadow: "0 8px 32px rgba(0,0,0,0.35)",
+                  background: "#111827",
+                  color: "white",
+                  padding: "14px 36px",
+                  borderRadius: "50px",
+                  fontFamily: "var(--font-heading)",
+                  fontWeight: 600,
+                  fontSize: "0.95rem",
+                  textDecoration: "none",
+                  boxShadow: "0 8px 24px rgba(0,0,0,0.15)",
+                  transition: "all 0.3s ease",
+                  marginBottom: "48px"
                 }}
               >
-                {/* Background photo */}
+                Partner With Us
+              </TransitionLink>
+            </div>
+          </div>
+        </div>
+
+        {/* 3D curved gallery */}
+        <div className="perspective-container reveal">
+          <div className="gallery-track">
+            {[
+              industries[4], // Facility Management
+              industries[0], // Offices & Corporate Spaces
+              industries[1], // Hospitals & Healthcare
+              industries[3], // Hotels & Restaurants (center)
+              industries[2], // Schools & Colleges
+              industries[5], // Government & Public Sector
+              industries[4], // Facility Management (loop)
+            ].map((ind, i) => (
+              <div
+                key={`${ind.name}-${i}`}
+                className={`b2b-3d-card b2b-3d-card-${i}`}
+              >
                 <img
                   src={ind.img}
                   alt={ind.name}
-                  style={{
-                    position: "absolute",
-                    inset: 0,
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "cover",
-                    transition: "transform 0.6s ease",
-                  }}
-                  className="industry-card-photo"
+                  className="b2b-3d-card-img"
                 />
-
-                {/* Dark gradient overlay — heavier at bottom */}
-                <div
-                  style={{
-                    position: "absolute",
-                    inset: 0,
-                    background: "linear-gradient(to top, rgba(5,15,25,0.92) 0%, rgba(5,15,25,0.45) 50%, rgba(5,15,25,0.08) 100%)",
-                  }}
-                />
-
-                {/* Colour accent line at top */}
-                <div
-                  style={{
-                    position: "absolute",
-                    top: 0,
-                    left: 0,
-                    right: 0,
-                    height: "3px",
-                    background: `linear-gradient(90deg, ${ind.color}, ${ind.color}00)`,
-                  }}
-                />
-
-                {/* Content at bottom */}
-                <div
-                  style={{
-                    position: "absolute",
-                    bottom: 0,
-                    left: 0,
-                    right: 0,
-                    padding: "24px",
-                  }}
-                >
-                  {/* Icon chip */}
-                  <div
-                    style={{
-                      display: "inline-flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      width: "40px",
-                      height: "40px",
-                      borderRadius: "12px",
-                      background: `${ind.color}25`,
-                      border: `1px solid ${ind.color}55`,
-                      backdropFilter: "blur(8px)",
-                      marginBottom: "12px",
-                    }}
-                  >
-                  </div>
-
-                  <h3
-                    style={{
-                      fontFamily: "var(--font-heading)",
-                      fontWeight: 700,
-                      fontSize: "1.45rem",
-                      color: "white",
-                      marginBottom: "6px",
-                      lineHeight: 1.2,
-                      textShadow: "0 2px 10px rgba(0,0,0,0.4)",
-                    }}
-                  >
-                    {ind.name}
-                  </h3>
-                  <p
-                    style={{
-                      fontSize: "0.95rem",
-                      color: "rgba(255,255,255,0.85)",
-                      lineHeight: 1.45,
-                      marginBottom: "16px",
-                      textShadow: "0 1px 4px rgba(0,0,0,0.4)",
-                    }}
-                    className="industry-card-desc"
-                  >
-                    {ind.description}
-                  </p>
-                </div>
               </div>
             ))}
           </div>
@@ -326,7 +415,7 @@ export default function B2BPage() {
       </section>
 
       {/* Concentrated Products Advantage */}
-      <section className="section" style={{ background: "var(--gray-50)" }}>
+      <section className="section" style={{ background: "var(--warm-white)" }}>
         <div className="container">
           <div
             style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "80px", alignItems: "center" }}
@@ -421,30 +510,159 @@ export default function B2BPage() {
           .capabilities-grid { grid-template-columns: repeat(2, 1fr) !important; }
           .capability-card { grid-column: span 1 !important; min-height: 260px !important; }
           .concentrated-grid { grid-template-columns: 1fr !important; }
-          .industries-photo-grid { grid-template-columns: repeat(2, 1fr) !important; }
         }
         @media (max-width: 640px) {
-          .industries-photo-grid { grid-template-columns: 1fr !important; }
           .capabilities-grid { grid-template-columns: 1fr !important; }
           .capability-card { min-height: 230px !important; padding: 24px !important; }
-          .industry-photo-card { height: 280px !important; }
         }
         .capability-card-0 { grid-column: span 5; }
         .capability-card-1 { grid-column: span 7; }
         .capability-card-2 { grid-column: span 7; }
         .capability-card-3 { grid-column: span 5; }
-        
-        // .capability-card:hover .capability-card-image { transform: scale(1.06); }
-        // .industry-photo-card:hover .industry-card-photo {
-          // transform: scale(1.06);
-        // }
-        
-        .industry-card-desc {
-          transition: opacity 0.3s ease;
-          opacity: 0.75;
+
+        /* 3D Curved Gallery for B2B Industries */
+        .perspective-container {
+          perspective: 1200px;
+          overflow: hidden;
+          width: 100%;
+          padding: 20px 0 60px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          position: relative;
+          height: 460px;
         }
-        .industry-photo-card:hover .industry-card-desc {
-          opacity: 1;
+
+        .gallery-track {
+          position: relative;
+          width: 100%;
+          max-width: 1600px;
+          height: 100%;
+          transform-style: preserve-3d;
+          margin: 0 auto;
+          transition: transform 0.3s ease;
+        }
+
+        .b2b-3d-card {
+          position: absolute;
+          left: 50%;
+          width: 210px;
+          height: 300px;
+          border-radius: 20px;
+          overflow: hidden;
+          transform: translateX(-50%) translate3d(var(--tx), 0, var(--tz)) rotateY(var(--ry));
+          z-index: var(--z);
+          background: #fff;
+        }
+
+        .b2b-3d-card-img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+
+        .b2b-sectors-btn {
+          transition: all 0.3s ease;
+        }
+        .b2b-sectors-btn:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 12px 28px rgba(0,0,0,0.22) !important;
+          filter: brightness(1.1);
+        }
+
+        /* Desktop Perspective transforms (Equal visual gaps: 12px between each adjacent card) */
+        @media (min-width: 1025px) {
+          .b2b-3d-card-0 {
+            --tx: -616px;
+            --tz: 80px;
+            --ry: 48deg;
+            --z: 4;
+          }
+          .b2b-3d-card-1 {
+            --tx: -425.3px;
+            --tz: -10px;
+            --ry: 32deg;
+            --z: 3;
+          }
+          .b2b-3d-card-2 {
+            --tx: -218.9px;
+            --tz: -80px;
+            --ry: 16deg;
+            --z: 2;
+          }
+          .b2b-3d-card-3 {
+            --tx: 0px;
+            --tz: -110px;
+            --ry: 0deg;
+            --z: 1;
+          }
+          .b2b-3d-card-4 {
+            --tx: 218.9px;
+            --tz: -80px;
+            --ry: -16deg;
+            --z: 2;
+          }
+          .b2b-3d-card-5 {
+            --tx: 425.3px;
+            --tz: -10px;
+            --ry: -32deg;
+            --z: 3;
+          }
+          .b2b-3d-card-6 {
+            --tx: 616px;
+            --tz: 80px;
+            --ry: -48deg;
+            --z: 4;
+          }
+        }
+
+        @media (min-width: 1025px) and (max-width: 1399px) {
+          .gallery-track {
+            transform: scale(0.82);
+          }
+        }
+        @media (min-width: 1400px) and (max-width: 1599px) {
+          .gallery-track {
+            transform: scale(0.92);
+          }
+        }
+
+        /* Mobile / Tablet Horizontal Scroll fallback */
+        @media (max-width: 1024px) {
+          .perspective-container {
+            perspective: none;
+            overflow-x: auto;
+            justify-content: flex-start;
+            padding: 20px 0 40px;
+            height: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+          }
+          .perspective-container::-webkit-scrollbar {
+            display: none;
+          }
+          .gallery-track {
+            display: flex;
+            position: relative;
+            width: auto;
+            max-width: none;
+            height: auto;
+            padding: 0 24px;
+            gap: 16px;
+            justify-content: flex-start;
+            transform-style: flat;
+          }
+          .b2b-3d-card {
+            position: relative;
+            left: 0;
+            width: 200px;
+            height: 280px;
+            transform: none !important;
+            margin: 0;
+            opacity: 1 !important;
+            flex-shrink: 0;
+            border-radius: 20px;
+          }
         }
       `}</style>
     </>

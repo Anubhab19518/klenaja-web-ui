@@ -267,7 +267,7 @@ function WhyKleanjaSection() {
         {/* Centered Heading */}
         <div style={{ textAlign: "center", maxWidth: "700px", margin: "0 auto 56px auto" }}>
           <span className="section-label section-label-blue reveal">Why Kleanja</span>
-          <h2 className="text-6xl leading-snug text-semibold" style={{ color: "var(--gray-800)", marginBottom: "16px" }}>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-snug text-semibold" style={{ color: "var(--gray-800)", marginBottom: "16px" }}>
             Built for performance.<br />Priced for value.
           </h2>
           <p className="body-md reveal" style={{ marginBottom: "0" }}>
@@ -643,8 +643,7 @@ export default function Home() {
             }}
             className="hero-grid"
           >
-            {/* Left — Text */}
-            <div className="home-hero-copy" style={{ textAlign: "left" }}>
+            <div className="home-hero-copy">
               <h1
                 style={{
                   fontFamily: "var(--font-heading)",
@@ -726,7 +725,7 @@ export default function Home() {
             </div>
             <div className="distribution-map reveal reveal-delay-2" aria-label="Kleanja distribution network across India">
               {/* Adjust mapHeight here to change the map's visual size. */}
-              <IndiaDistributionMap large mapHeight="clamp(420px, 45vw, 580px)" />
+              <IndiaDistributionMap large mapHeight="clamp(360px, 50vw, 450px)" />
             </div>
           </div>
         </div>
@@ -867,6 +866,9 @@ export default function Home() {
           box-shadow: 0 6px 20px rgba(0,0,0,0.25);
           background: #f8faf8;
         }
+        .home-hero-copy {
+          text-align: left;
+        }
         .distribution-layout {
           display: grid;
           grid-template-columns: minmax(0, 1fr) minmax(420px, 0.95fr);
@@ -913,8 +915,21 @@ export default function Home() {
           .why-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
           .b2b-card { grid-template-columns: 1fr !important; }
           .distribution-layout { grid-template-columns: 1fr; gap: 28px; }
-          .distribution-copy { max-width: 720px; }
-          .distribution-map { max-width: 680px; width: 100%; }
+          .distribution-copy {
+            max-width: 100%;
+            text-align: center;
+            margin: 0 auto;
+          }
+          .distribution-copy > h2,
+          .distribution-copy > p {
+            margin-left: auto !important;
+            margin-right: auto !important;
+          }
+          .distribution-map {
+            max-width: 1000px;
+            width: 100%;
+            margin: 0 auto;
+          }
         }
         @media (max-width: 640px) {
           .home-hero {

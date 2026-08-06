@@ -1,12 +1,12 @@
 "use client";
 import TransitionLink from "@/components/TransitionLink";
 import Image from "next/image";
-import { Phone, Mail, MapPin, ArrowRight } from "lucide-react";
+import { Phone, Mail, MapPin, Globe, ChevronDown } from "lucide-react";
 
-// Social icons as inline SVGs since lucide-react 1.28 lacks them
-const SocialFacebook = () => (
+// Social icons matching screenshot layout
+const SocialLinkedin = () => (
   <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z" /><circle cx="4" cy="4" r="2" />
   </svg>
 );
 const SocialInstagram = () => (
@@ -14,23 +14,23 @@ const SocialInstagram = () => (
     <rect x="2" y="2" width="20" height="20" rx="5" ry="5" /><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" /><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
   </svg>
 );
-const SocialTwitter = () => (
+const SocialFacebook = () => (
   <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
   </svg>
 );
-const SocialLinkedin = () => (
+const SocialYoutube = () => (
   <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z" /><circle cx="4" cy="4" r="2" />
+    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
   </svg>
 );
 
 const productCategories = [
-  { name: "Floor Cleaning Solutions", href: "/products/floor-cleaning" },
-  { name: "Toilet & Bathroom Cleaners", href: "/products/toilet-bathroom" },
-  { name: "Hand Hygiene Products", href: "/products/hand-hygiene" },
+  { name: "Floor Cleaning", href: "/products/floor-cleaning" },
+  { name: "Toilet & Bathroom", href: "/products/toilet-bathroom" },
+  { name: "Hand Hygiene", href: "/products/hand-hygiene" },
   { name: "Dishwashing Solutions", href: "/products/dishwashing" },
-  { name: "Glass & Surface Cleaners", href: "/products/glass-surface" },
+  { name: "Glass & Surface", href: "/products/glass-surface" },
   { name: "Phenyl & Disinfectants", href: "/products/phenyl-disinfectants" },
 ];
 
@@ -46,145 +46,197 @@ export default function Footer() {
   return (
     <footer
       style={{
-        background: "var(--gradient-hero)",
-        color: "rgba(255,255,255,0.85)",
-        position: "relative",
-        overflow: "hidden",
+        background: "#FFFFFF",
+        color: "#4B5563",
+        paddingTop: "32px",
+        paddingBottom: "32px",
+        fontFamily: "var(--font-body)",
       }}
     >
-      {/* Decorative blobs */}
-      <div
-        style={{
-          position: "absolute",
-          top: "-100px",
-          right: "-100px",
-          width: "400px",
-          height: "400px",
-          borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(39,140,11,0.12), transparent)",
-          pointerEvents: "none",
-        }}
-      />
-      <div
-        style={{
-          position: "absolute",
-          bottom: "-80px",
-          left: "-80px",
-          width: "300px",
-          height: "300px",
-          borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(3,103,166,0.15), transparent)",
-          pointerEvents: "none",
-        }}
-      />
-
-      {/* CTA Banner */}
-      <div
-        style={{
-          background: "linear-gradient(90deg, rgba(3,103,166,0.35), rgba(39,140,11,0.35))",
-          borderBottom: "1px solid rgba(255,255,255,0.08)",
-          padding: "48px 0",
-        }}
-      >
-        <div className="container">
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-              gap: "24px",
-              flexWrap: "wrap",
-            }}
-          >
-            <div>
-              <h2
-                style={{
-                  fontFamily: "var(--font-heading)",
-                  fontSize: "clamp(1.4rem, 3vw, 2rem)",
-                  fontWeight: 700,
-                  color: "white",
-                  marginBottom: "8px",
-                }}
-              >
-                Ready to Partner with Kleanja?
-              </h2>
-              <p style={{ color: "rgba(255,255,255,0.7)", fontSize: "1rem" }}>
-                Bulk supply, customized solutions, and competitive pricing for businesses.
-              </p>
-            </div>
-            <TransitionLink href="/contact" className="btn-primary" style={{ whiteSpace: "nowrap" }}>
-              Get a Quote <ArrowRight size={16} />
-            </TransitionLink>
+      <div className="container" style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 24px" }}>
+        
+        {/* Top Bar: Logo & Tagline */}
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            paddingBottom: "28px",
+            borderBottom: "1px solid #E5E7EB",
+            flexWrap: "wrap",
+            gap: "16px",
+          }}
+        >
+          <div>
+            <Image
+              src="/klenja_logo_without_text_transparent.png"
+              alt="Kleanja Logo"
+              width={140}
+              height={40}
+              style={{ width: "auto", height: "38px" }}
+            />
           </div>
+          <span style={{ fontSize: "0.95rem", color: "#6B7280", fontWeight: 400 }}>
+            Delivering high-performance cleaning & hygiene solutions across India.
+          </span>
         </div>
-      </div>
 
-      {/* Main Footer Content */}
-      <div className="container" style={{ padding: "60px 24px 40px" }}>
+        {/* Middle Section: Columns & Socials */}
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "2fr 1.5fr 1.5fr 1.5fr",
-            gap: "48px",
+            gridTemplateColumns: "1.2fr 1.2fr 1.5fr 1fr",
+            gap: "40px",
+            paddingTop: "36px",
+            paddingBottom: "44px",
           }}
-          className="footer-grid"
+          className="footer-middle-grid"
         >
-          {/* Brand Column */}
+          {/* Column 1: Our Products */}
           <div>
-            <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "20px" }}>
-              <div style={{ display: "inline-block" }}>
-                <Image
-                  src="/klenja_logo_without_text_transparent.png"
-                  alt="Kleanja Logo"
-                  width={160}
-                  height={50}
-                  style={{ width: "auto", height: "45px" }}
-                />
-              </div>
-            </div>
-            <p style={{ fontSize: "0.9rem", lineHeight: 1.7, color: "rgba(255,255,255,0.65)", marginBottom: "24px", maxWidth: "280px" }}>
-              Delivering high-performance cleaning and hygiene solutions for households, businesses, and institutions across India.
-            </p>
+            <h4
+              style={{
+                fontFamily: "var(--font-heading)",
+                fontWeight: 600,
+                fontSize: "0.9rem",
+                color: "#111827",
+                marginBottom: "20px",
+              }}
+            >
+              Our Products
+            </h4>
+            <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "6px" }}>
+              {productCategories.map((item) => (
+                <li key={item.name}>
+                  <TransitionLink
+                    href={item.href}
+                    className="footer-text-link"
+                  >
+                    {item.name}
+                  </TransitionLink>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-            {/* Contact Info */}
-            <div style={{ display: "flex", flexDirection: "column", gap: "10px", marginBottom: "24px" }}>
+          {/* Column 2: Quick Links */}
+          <div>
+            <h4
+              style={{
+                fontFamily: "var(--font-heading)",
+                fontWeight: 600,
+                fontSize: "0.9rem",
+                color: "#111827",
+                marginBottom: "20px",
+              }}
+            >
+              Quick Links
+            </h4>
+            <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "6px" }}>
+              {quickLinks.map((item) => (
+                <li key={item.name}>
+                  <TransitionLink
+                    href={item.href}
+                    className="footer-text-link"
+                  >
+                    {item.name}
+                  </TransitionLink>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Column 3: Contact */}
+          <div>
+            <h4
+              style={{
+                fontFamily: "var(--font-heading)",
+                fontWeight: 600,
+                fontSize: "0.9rem",
+                color: "#111827",
+                marginBottom: "20px",
+              }}
+            >
+              Contact
+            </h4>
+            <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
               {[
-                { icon: Phone, text: "+91 98765 43210" },
                 { icon: Mail, text: "info@kleanja.com" },
-                { icon: MapPin, text: "India" },
+                { icon: Phone, text: "+91 98765 43210" },
+                { icon: MapPin, text: "New Delhi, India" },
               ].map(({ icon: Icon, text }) => (
-                <div key={text} style={{ display: "flex", alignItems: "center", gap: "10px", fontSize: "0.88rem" }}>
-                  <Icon size={15} style={{ color: "var(--ds-color-accent)", flexShrink: 0 }} />
-                  <span style={{ color: "rgba(255,255,255,0.65)" }}>{text}</span>
+                <div key={text} style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+                  <div
+                    style={{
+                      width: "28px",
+                      height: "28px",
+                      borderRadius: "10px",
+                      border: "1px solid #E0F2FE",
+                      background: "#F0F9FF",
+                      color: "#0284C7",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      flexShrink: 0,
+                    }}
+                  >
+                    <Icon size={15} />
+                  </div>
+                  <span style={{ fontSize: "0.8rem", color: "#4B5563", fontWeight: 400 }}>{text}</span>
                 </div>
               ))}
             </div>
+          </div>
 
-            {/* Social Links */}
+          {/* Column 4: Language Selector & Social Icons centered vertically */}
+          <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", justifyContent: "center", gap: "16px" }} className="footer-socials-col">
+            {/* Language Selector (English only) */}
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "8px",
+                padding: "8px 14px",
+                borderRadius: "10px",
+                border: "1px solid #E5E7EB",
+                background: "#FFFFFF",
+                color: "#374151",
+                fontSize: "0.85rem",
+                fontWeight: 500,
+                cursor: "default",
+                userSelect: "none",
+              }}
+            >
+              <Globe size={16} style={{ color: "#6B7280" }} />
+              <span>English</span>
+              <ChevronDown size={14} style={{ color: "#9CA3AF" }} />
+            </div>
+
+            {/* Social Icons */}
             <div style={{ display: "flex", gap: "10px" }}>
-              {[SocialFacebook, SocialInstagram, SocialTwitter, SocialLinkedin].map((Icon, i) => (
+              {[SocialLinkedin, SocialInstagram, SocialFacebook, SocialYoutube].map((Icon, idx) => (
                 <a
-                  key={i}
+                  key={idx}
                   href="#"
                   style={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
                     width: "36px",
                     height: "36px",
                     borderRadius: "10px",
-                    background: "rgba(255,255,255,0.08)",
-                    border: "1px solid rgba(255,255,255,0.1)",
-                    color: "rgba(255,255,255,0.7)",
+                    border: "1px solid #E5E7EB",
+                    background: "#FFFFFF",
+                    color: "#111827",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
                     transition: "all 0.2s ease",
                   }}
                   onMouseEnter={(e) => {
-                    (e.currentTarget as HTMLAnchorElement).style.background = "rgba(3,103,166,0.6)";
-                    (e.currentTarget as HTMLAnchorElement).style.color = "white";
+                    (e.currentTarget as HTMLAnchorElement).style.borderColor = "#9CA3AF";
+                    (e.currentTarget as HTMLAnchorElement).style.background = "#F9FAFB";
                   }}
                   onMouseLeave={(e) => {
-                    (e.currentTarget as HTMLAnchorElement).style.background = "rgba(255,255,255,0.08)";
-                    (e.currentTarget as HTMLAnchorElement).style.color = "rgba(255,255,255,0.7)";
+                    (e.currentTarget as HTMLAnchorElement).style.borderColor = "#E5E7EB";
+                    (e.currentTarget as HTMLAnchorElement).style.background = "#FFFFFF";
                   }}
                 >
                   <Icon />
@@ -192,124 +244,73 @@ export default function Footer() {
               ))}
             </div>
           </div>
-
-          {/* Products Column */}
-          <div>
-            <h3 style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: "1rem", color: "white", marginBottom: "20px", letterSpacing: "0.05em" }}>
-              Our Products
-            </h3>
-            <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: "10px" }}>
-              {productCategories.map((cat) => (
-                <li key={cat.name}>
-                  <TransitionLink
-                    href={cat.href}
-                    className="footer-link"
-                  >
-                    <ArrowRight size={12} />
-                    {cat.name}
-                  </TransitionLink>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Quick Links Column */}
-          <div>
-            <h3 style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: "1rem", color: "white", marginBottom: "20px", letterSpacing: "0.05em" }}>
-              Quick Links
-            </h3>
-            <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: "10px" }}>
-              {quickLinks.map((link) => (
-                <li key={link.name}>
-                  <TransitionLink
-                    href={link.href}
-                    className="footer-link"
-                  >
-                    <ArrowRight size={12} />
-                    {link.name}
-                  </TransitionLink>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Newsletter / Mission */}
-          <div>
-            <h3 style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: "1rem", color: "white", marginBottom: "20px", letterSpacing: "0.05em" }}>
-              Our Vision
-            </h3>
-            <p style={{ fontSize: "0.88rem", color: "rgba(255,255,255,0.6)", lineHeight: 1.7, marginBottom: "20px" }}>
-              Establishing a strong presence in the cleaning and hygiene industry through innovative, affordable, and high-quality products.
-            </p>
-
-            {/* Trust Badges */}
-            <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-              {[
-                "Quality Assured Products",
-                "Eco-Friendly Variants",
-                "Pan India Supply",
-                "B2B Ready",
-              ].map((badge) => (
-                <div
-                  key={badge}
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "8px",
-                    fontSize: "0.83rem",
-                    color: "rgba(255,255,255,0.65)",
-                  }}
-                >
-                  {badge}
-                </div>
-              ))}
-            </div>
-          </div>
         </div>
-      </div>
 
-      {/* Bottom Bar */}
-      <div
-        style={{
-          borderTop: "1px solid rgba(255,255,255,0.08)",
-          padding: "20px 0",
-        }}
-      >
+        {/* Bottom Bar: Copyright & Legal */}
         <div
-          className="container"
           style={{
+            borderTop: "1px solid #E5E7EB",
+            paddingTop: "24px",
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
             flexWrap: "wrap",
-            gap: "12px",
+            gap: "16px",
           }}
         >
-          <p style={{ fontSize: "0.82rem", color: "rgba(255,255,255,0.4)" }}>
-            © {new Date().getFullYear()} Kleanja. All rights reserved. | Dirt Ka The End
-          </p>
-          <div style={{ display: "flex", gap: "20px" }}>
-            {["Privacy Policy", "Terms of Service"].map((item) => (
+          <span style={{ fontSize: "0.85rem", color: "#6B7280" }}>
+            © {new Date().getFullYear()} Kleanja. All rights reserved.
+          </span>
+          <div style={{ display: "flex", gap: "28px" }}>
+            {["Terms & Conditions", "Privacy Policy", "Cookies"].map((legal) => (
               <a
-                key={item}
+                key={legal}
                 href="#"
-                style={{ fontSize: "0.82rem", color: "rgba(255,255,255,0.4)", textDecoration: "none" }}
+                style={{
+                  fontSize: "0.85rem",
+                  color: "#6B7280",
+                  textDecoration: "none",
+                  transition: "color 0.2s ease",
+                }}
+                onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = "#111827"; }}
+                onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = "#6B7280"; }}
               >
-                {item}
+                {legal}
               </a>
             ))}
           </div>
         </div>
+
       </div>
 
       <style>{`
-        @media (max-width: 1024px) {
-          .footer-grid { grid-template-columns: 1fr 1fr !important; }
+        .footer-text-link {
+          font-size: 0.8rem;
+          color: #6B7280;
+          text-decoration: none;
+          transition: color 0.2s ease;
+          font-weight: 400;
         }
-        @media (max-width: 600px) {
-          .footer-grid { grid-template-columns: 1fr !important; }
+        .footer-text-link:hover {
+          color: #111827;
+        }
+        @media (max-width: 1024px) {
+          .footer-middle-grid {
+            grid-template-columns: 1fr 1fr !important;
+          }
+          .footer-socials-col {
+            align-items: flex-start !important;
+            justify-content: flex-start !important;
+          }
+        }
+        @media (max-width: 640px) {
+          .footer-middle-grid {
+            grid-template-columns: 1fr !important;
+          }
         }
       `}</style>
     </footer>
   );
 }
+
+

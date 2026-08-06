@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import TransitionLink from "@/components/TransitionLink";
 import Link from "next/link";
 import Image from "next/image";
@@ -23,6 +24,8 @@ const navLinks = [
 ];
 
 export default function Header() {
+  const pathname = usePathname();
+  const isB2BPage = pathname === "/b2b";
   const [isScrolled, setIsScrolled] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
@@ -40,7 +43,8 @@ export default function Header() {
   }, []);
 
   const showWhiteBg = isHovered || isScrolled;
-  const linkColor = showWhiteBg ? "#0367A6" : "rgba(255, 255, 255, 0.95)";
+  const showDarkText = showWhiteBg || isB2BPage;
+  const linkColor = showDarkText ? "#0367A6" : "rgba(255, 255, 255, 0.95)";
 
   return (
     <>
@@ -56,7 +60,9 @@ export default function Header() {
           transition: "all 0.4s ease",
           background: showWhiteBg ? "white" : "transparent",
           backdropFilter: "none",
-          borderBottom: showWhiteBg ? "1px solid rgba(0,0,0,0.08)" : "1px solid transparent",
+          borderBottom: showWhiteBg
+            ? "1px solid rgba(0,0,0,0.08)"
+            : "1px solid transparent",
           padding: 0,
         }}
       >
@@ -74,9 +80,16 @@ export default function Header() {
             justifyContent: "center",
             transition: "height 0.3s ease",
             fontFamily: "var(--font-heading)",
+            padding: "0 12px",
+            whiteSpace: "nowrap",
           }}
         >
-          Save on Kleanja Bulk Orders. Special B2B pricing active.
+          <span className="announcement-desktop">
+            Save on Kleanja Bulk Orders. Special B2B pricing active.
+          </span>
+          <span className="announcement-mobile">
+            Contact us for bulk orders.
+          </span>
         </div>
         <div className="container" style={{ padding: isScrolled ? "6px 24px" : "12px 24px", transition: "padding 0.3s ease" }}>
           <nav
@@ -90,7 +103,7 @@ export default function Header() {
           >
             {/* Logo */}
             <TransitionLink href="/" style={{ display: "flex", alignItems: "center", gap: "10px", textDecoration: "none" }}>
-              <KleanjaLogo scrolled={isScrolled} hovered={isHovered} />
+              <KleanjaLogo scrolled={isScrolled} hovered={isHovered} isB2B={isB2BPage} />
             </TransitionLink>
 
             {/* Desktop Nav */}
@@ -113,7 +126,7 @@ export default function Header() {
                         position: "relative",
                       }}
                     >
-                      {/* Products label: plain Link — no transition system, just hover trigger + navigation */}
+                      {/* Products label */}
                       <Link
                         href={link.href}
                         style={{
@@ -218,9 +231,9 @@ export default function Header() {
                 style={{
                   fontSize: "0.9rem",
                   padding: "10px 24px",
-                  background: showWhiteBg ? "var(--color-primary, #0367A6)" : "white",
-                  color: showWhiteBg ? "white" : "var(--color-primary, #0367A6)",
-                  border: showWhiteBg ? "1px solid var(--color-primary, #0367A6)" : "none",
+                  background: showDarkText ? "var(--color-primary, #0367A6)" : "white",
+                  color: showDarkText ? "white" : "var(--color-primary, #0367A6)",
+                  border: showDarkText ? "1px solid var(--color-primary, #0367A6)" : "none",
                   borderRadius: "50px",
                   fontFamily: "var(--font-heading)",
                   fontWeight: 600,
@@ -238,10 +251,10 @@ export default function Header() {
                 onClick={() => setIsMobileOpen(!isMobileOpen)}
                 className="show-mobile"
                 style={{
-                  background: "rgba(255,255,255,0.1)",
+                  background: showDarkText ? "rgba(3, 103, 166, 0.08)" : "rgba(255,255,255,0.1)",
                   border: "none",
                   cursor: "pointer",
-                  color: "white",
+                  color: showDarkText ? "#0367A6" : "white",
                   padding: "8px",
                   borderRadius: "8px",
                   backdropFilter: "blur(4px)",
@@ -347,6 +360,13 @@ export default function Header() {
         .hidden-mobile { display: flex; }
         .show-mobile { display: none; }
         
+        .announcement-desktop {
+          display: inline;
+        }
+        .announcement-mobile {
+          display: none;
+        }
+        
         /* Premium nav link hover */
         .nav-link {
           position: relative;
@@ -374,14 +394,16 @@ export default function Header() {
         @media (max-width: 768px) {
           .hidden-mobile { display: none !important; }
           .show-mobile { display: block !important; }
+          .announcement-desktop { display: none !important; }
+          .announcement-mobile { display: inline !important; }
         }
       `}</style>
     </>
   );
 }
 
-function KleanjaLogo({ scrolled, hovered }: { scrolled: boolean; hovered: boolean }) {
-  const showWhiteText = !scrolled && !hovered;
+function KleanjaLogo({ scrolled, hovered, isB2B }: { scrolled: boolean; hovered: boolean; isB2B?: boolean }) {
+  const showWhiteText = !scrolled && !hovered && !isB2B;
   const textColor = showWhiteText ? "white" : "#0367A6";
   const logoFilter = showWhiteText ? "brightness(0) invert(1)" : "none";
 

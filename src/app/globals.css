@@ -122,10 +122,9 @@ a {
 
 .heading-lg {
   font-family: var(--font-heading);
-  font-size: clamp(1.8rem, 3.5vw, 3rem);
+  font-size: clamp(2rem, 5.5vw, 3rem);
   font-weight: 700;
   line-height: 1.2;
-  letter-spacing: -0.01em;
 }
 
 .heading-md {
@@ -659,17 +658,19 @@ body.transitioning {
 
 /* Footer Link Styles */
 .footer-link {
-  font-size: 0.88rem;
-  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.85rem;
+  color: #475467;
   text-decoration: none;
-  transition: color 0.2s ease;
+  transition: all 0.2s ease;
   display: flex;
   align-items: center;
   gap: 6px;
+  line-height: 1.4;
 }
 
 .footer-link:hover {
-  color: var(--green-light);
+  color: var(--blue-primary);
+  transform: translateX(2px);
 }
 
 /* Header Dropdown Link Styles */

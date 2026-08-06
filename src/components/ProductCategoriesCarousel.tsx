@@ -24,7 +24,7 @@ function useVisibleCount() {
 
   useEffect(() => {
     const update = () => {
-      if (window.innerWidth < 640) setVisible(1);
+      if (window.innerWidth < 640) setVisible(1.5);
       else if (window.innerWidth < 900) setVisible(2);
       else if (window.innerWidth < 1200) setVisible(3);
       else setVisible(4);
@@ -45,7 +45,7 @@ export default function ProductCategoriesCarousel({
 }) {
   const visible = useVisibleCount();
   const [index, setIndex] = useState(0);
-  const maxIndex = Math.max(0, categories.length - visible);
+  const maxIndex = Math.max(0, Math.ceil(categories.length - visible));
 
   useEffect(() => {
     setIndex((current) => Math.min(current, maxIndex));
@@ -146,9 +146,8 @@ export default function ProductCategoriesCarousel({
         .products-carousel-heading {
           font-family: var(--font-heading);
           font-size: clamp(2rem, 3.5vw, 3rem);
-          font-weight: 700;
+          font-weight: 600;
           line-height: 1.15;
-          letter-spacing: -0.02em;
           color: var(--black);
           margin-bottom: 40px;
         }
@@ -309,8 +308,8 @@ export default function ProductCategoriesCarousel({
           }
 
           .products-carousel-card {
-            min-height: 480px;
-            aspect-ratio: 3 / 4.8;
+            min-height: 360px;
+            aspect-ratio: 3 / 4.2;
           }
 
           .products-carousel-arrow {
