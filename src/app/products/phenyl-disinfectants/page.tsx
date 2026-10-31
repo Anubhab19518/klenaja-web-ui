@@ -6,7 +6,7 @@ export const metadata = {
   description: "White phenyl, black phenyl, concentrated disinfectants, and bulk cleaning solutions for large-scale hygiene by Kleanja.",
 };
 
-const products = [
+const fallbackProducts = [
   {
     name: "White Phenyl",
     description: "White phenyl for general floor and surface cleaning",
@@ -32,6 +32,7 @@ const products = [
 export default function PhenyldisinfectantsPage() {
   return (
     <ProductCategoryPage
+      categorySlug="phenyl-and-disinfectants"
       title="Phenyl & Disinfectants"
       tagline="Industrial-grade protection."
       description="High-quality phenyl and disinfectant products for large-scale cleaning and disinfection in hospitals, schools, offices, and public facilities."
@@ -41,7 +42,7 @@ export default function PhenyldisinfectantsPage() {
       gradient={gradients.blueGray}
       img={null}
       heroImage="/products/phenyl.jpg"
-      products={products}
+      products={fallbackProducts}
       keyPoints={[]}
     />
   );

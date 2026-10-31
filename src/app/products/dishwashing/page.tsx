@@ -6,7 +6,7 @@ export const metadata = {
   description: "Powerful dishwash liquids and concentrated solutions for homes and commercial food service by Kleanja.",
 };
 
-const products = [
+const fallbackProducts = [
   {
     name: "Dishwash Liquid",
     description: "Dishwash liquids with strong grease-cutting action",
@@ -32,6 +32,7 @@ const products = [
 export default function DishwashingPage() {
   return (
     <ProductCategoryPage
+      categorySlug="dishwashing"
       title="Dishwashing Solutions"
       tagline="Sparkling clean, every time."
       description="Kleanja's dishwashing solutions handle tough grease and food residue while ensuring hygienic cleaning for domestic kitchens and commercial food service environments."
@@ -41,7 +42,7 @@ export default function DishwashingPage() {
       gradient={gradients.greenSoft}
       img="/dishwash.png"
       heroImage="/products/dishwash.jpg"
-      products={products}
+      products={fallbackProducts}
       keyPoints={[]}
     />
   );

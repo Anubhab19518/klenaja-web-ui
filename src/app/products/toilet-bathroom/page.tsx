@@ -6,7 +6,7 @@ export const metadata = {
   description: "Deep-action toilet bowl cleaners, bathroom surface cleaners, descaling solutions, and germ-kill formulations by Kleanja.",
 };
 
-const products = [
+const fallbackProducts = [
   {
     name: "Toilet Bowl Cleaner",
     img: "/bathroom-toilet-cleaner/ToiletBowelCleaner.png",
@@ -36,6 +36,7 @@ const products = [
 export default function ToiletBathroomPage() {
   return (
     <ProductCategoryPage
+      categorySlug="toilet-and-bathroom"
       title="Toilet & Bathroom Cleaners"
       tagline="Hygiene where it matters most."
       description="Kleanja's toilet and bathroom cleaning products are specifically designed to remove tough stains, limescale deposits, and harmful bacteria from all bathroom surfaces."
@@ -45,7 +46,7 @@ export default function ToiletBathroomPage() {
       gradient={gradients.blueSoft}
       img="/toilet-cleaner.png"
       heroImage="/products/bathroom.jpg"
-      products={products}
+      products={fallbackProducts}
       keyPoints={[]}
     />
   );

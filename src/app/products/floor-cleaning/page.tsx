@@ -6,7 +6,7 @@ export const metadata = {
   description: "Multi-surface floor cleaners, disinfectant floor cleaners, herbal variants, and concentrated solutions by Kleanja.",
 };
 
-const products = [
+const fallbackProducts = [
   {
     name: "Multi-Surface Floor Cleaner",
     img: "/floor-cleaning/MultiSurfaceFloorCleaner.png",
@@ -36,6 +36,7 @@ const products = [
 export default function FloorCleaningPage() {
   return (
     <ProductCategoryPage
+      categorySlug="floor-cleaning"
       title="Floor Cleaning Solutions"
       tagline="Deep clean, lasting shine."
       description="Our floor cleaning solutions deliver deep cleaning while protecting surfaces and leaving behind a refreshing fragrance — suitable for tiles, marble, granite, and more."
@@ -44,7 +45,7 @@ export default function FloorCleaningPage() {
       gradient={gradients.bluePale}
       img="/floor-cleaning.png"
       heroImage="/products/floorclean.jpg"
-      products={products}
+      products={fallbackProducts}
       keyPoints={[]}
     />
   );

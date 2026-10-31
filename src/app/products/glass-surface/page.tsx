@@ -6,7 +6,7 @@ export const metadata = {
   description: "Streak-free glass cleaners, multi-surface sprays, and office cleaning solutions by Kleanja.",
 };
 
-const products = [
+const fallbackProducts = [
   {
     name: "Glass Cleaner",
     description: "Glass cleaners for streak-free shine on mirrors and windows",
@@ -32,6 +32,7 @@ const products = [
 export default function GlassSurfacePage() {
   return (
     <ProductCategoryPage
+      categorySlug="glass-and-surface-cleaners"
       title="Glass & Surface Cleaners"
       tagline="Streak-free brilliance."
       description="Crystal-clear glass cleaners and multi-surface sprays that effectively remove dust, fingerprints, and smudges, leaving surfaces spotless and polished."
@@ -41,7 +42,7 @@ export default function GlassSurfacePage() {
       gradient={gradients.blueMuted}
       img="/glass-cleaner.png"
       heroImage="/products/glass.jpg"
-      products={products}
+      products={fallbackProducts}
       keyPoints={[]}
     />
   );

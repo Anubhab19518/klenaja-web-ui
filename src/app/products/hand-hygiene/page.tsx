@@ -6,7 +6,7 @@ export const metadata = {
   description: "Liquid handwash, antibacterial formulations, and moisturizing hand hygiene solutions for homes and institutions by Kleanja.",
 };
 
-const products = [
+const fallbackProducts = [
   {
     name: "Liquid Handwash",
     description: "Liquid handwash — gentle and effective for daily use",
@@ -32,16 +32,17 @@ const products = [
 export default function HandHygienePage() {
   return (
     <ProductCategoryPage
+      categorySlug="hand-hygiene"
       title="Hand Hygiene Products"
       tagline="Clean hands, healthier lives."
       description="Kleanja offers a range of hand hygiene products that combine effective cleansing with skin-friendly formulations — suitable for homes, offices, hospitals, and schools."
-      fullDescription="Kleanja offers, gentle liquid handwashes and antibacterial solutions that remove germs, protect skin, and encourage regular use in homes and public spaces with a pleasant fragrance."
+      fullDescription="Kleanja offers gentle liquid handwashes and antibacterial solutions that remove germs, protect skin, and encourage regular use in homes and public spaces with a pleasant fragrance."
       icon="🙌"
       color={colors.greenPrimary}
       gradient={gradients.greenPale}
       img="/handwash.png"
       heroImage="/products/handwash.jpg"
-      products={products}
+      products={fallbackProducts}
       keyPoints={[]}
     />
   );
